@@ -6,7 +6,7 @@
 package graphic;
 
 import DAO.registerDAO;
-import Metier.ComptableUser;
+import Metier.EntrepriseUser;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -440,9 +440,9 @@ public class Register extends javax.swing.JFrame {
             try {
                 registerDAO conn = new registerDAO();
                 boolean result = false;
-                ComptableUser tmpuser;
+                EntrepriseUser tmpuser;
                 String pass = new String(passField.getPassword());
-                tmpuser = new ComptableUser(emailField.getText(), pass, raisonField.getText(), siretField.getText(), cpField.getText(), villeField.getText(), telField.getText(), "Entreprise", nomField.getText(), prenomField.getText());
+                tmpuser = new EntrepriseUser(emailField.getText(), pass, raisonField.getText(), siretField.getText(), cpField.getText(), villeField.getText(), telField.getText(), "Entreprise", nomField.getText(), prenomField.getText());
                 result = conn.RegisterEnterprise(tmpuser);
                 if(result){
                     

@@ -6,7 +6,7 @@
 package graphic;
 
 import DAO.NoteFraisDAO;
-import Metier.CommercialUser;
+import Metier.User;
 import java.awt.Color;
 import static java.lang.String.valueOf;
 
@@ -15,7 +15,7 @@ import static java.lang.String.valueOf;
  * @author ibrah
  */
 public class Commercial extends javax.swing.JFrame {
-    private CommercialUser currentUser;
+    private User currentUser;
 
     /**
      * Creates new form Commercial
@@ -27,7 +27,7 @@ public class Commercial extends javax.swing.JFrame {
         this.setVisible(true);
     }
     
-    public Commercial(CommercialUser user) {
+    public Commercial(User user) {
         this.currentUser = user;
         initComponents();
         this.setVisible(true);
@@ -651,6 +651,12 @@ public class Commercial extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Commercial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        //</editor-fold>
+
+        //</editor-fold>
+
         //</editor-fold>
 
         /* Create and display the form */

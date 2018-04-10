@@ -9,7 +9,7 @@ package Metier;
  *
  * @author ibrah
  */
-public class ComptableUser {
+public class EntrepriseUser {
     private int id;
     private String email;
     private String password;
@@ -23,7 +23,7 @@ public class ComptableUser {
     private String LastName;
     private String FirstName;
 
-    public ComptableUser(int id, String email, String password, String raisonSocial, String SIRET, String code_postal, String ville, String telephone, String accountType, String LastName, String FirstName) {
+    public EntrepriseUser(int id, String email, String password, String raisonSocial, String SIRET, String code_postal, String ville, String telephone, String accountType, String LastName, String FirstName) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -37,7 +37,7 @@ public class ComptableUser {
         this.FirstName = FirstName;
     }
 
-    public ComptableUser(String email, String password, String raisonSocial, String SIRET, String code_postal, String ville, String telephone, String accountType, String LastName, String FirstName) {
+    public EntrepriseUser(String email, String password, String raisonSocial, String SIRET, String code_postal, String ville, String telephone, String accountType, String LastName, String FirstName) {
         this.email = email;
         this.password = password;
         this.raisonSocial = raisonSocial;

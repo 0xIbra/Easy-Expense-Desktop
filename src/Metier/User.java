@@ -9,7 +9,7 @@ package Metier;
  *
  * @author ibrah
  */
-public class CommercialUser {
+public class User {
     private int id;
     private String email;
     private String password;
@@ -22,7 +22,7 @@ public class CommercialUser {
     private String FirstName;
     
     
-    public CommercialUser(String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom){
+    public User(String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom){
         this.email = email;
         this.password = password;
         this.code_postal = codepostale;
@@ -33,7 +33,7 @@ public class CommercialUser {
         this.FirstName = prenom;
     }
     
-    public CommercialUser(int id, String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom){
+    public User(int id, String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom){
         this.id = id;
         this.email = email;
         this.password = password;
