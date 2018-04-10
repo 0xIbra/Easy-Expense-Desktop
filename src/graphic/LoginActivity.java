@@ -345,7 +345,11 @@ public class LoginActivity extends javax.swing.JFrame {
                     if(loginComptableEmailField.getText().equals(this.currentComptable.getEmail()) && pass.equals(this.currentComptable.getPassword())){
                         this.dispose();
                         Comptable f = new Comptable(this.currentComptable);
+<<<<<<< HEAD
                         f.initCurrentUser();
+=======
+                        f.initCurrentComptable();
+>>>>>>> master
                     }else{
                         JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrects.");
                     }
@@ -358,8 +362,13 @@ public class LoginActivity extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Merci de remplir tous les champs avant de valider.");
         }
+<<<<<<< HEAD
  
         
+=======
+   
+  
+>>>>>>> master
     }//GEN-LAST:event_ConnectBGMouseReleased
 
     private void ConnectBG1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBG1MousePressed
