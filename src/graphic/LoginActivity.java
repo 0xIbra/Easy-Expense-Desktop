@@ -335,8 +335,6 @@ public class LoginActivity extends javax.swing.JFrame {
     private void ConnectBGMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBGMouseReleased
         ConnectBG.setBackground(new Color(92,235,181));
         
-<<<<<<< HEAD
-=======
         if(!"".equals(loginComptableEmailField.getText()) && !"".equals(loginComptablePassField.getPassword())){
             if(loginComptableEmailField.getText().contains("@") && loginComptableEmailField.getText().contains(".")){
                  try {
@@ -346,7 +344,7 @@ public class LoginActivity extends javax.swing.JFrame {
                     if(loginComptableEmailField.getText().equals(this.currentComptable.getEmail()) && pass.equals(this.currentComptable.getPassword())){
                         this.dispose();
                         Comptable f = new Comptable(this.currentComptable);
-                        f.prepareWelcome(this.currentComptable.getFirstName());
+                        f.initCurrentComptable();
                     }else{
                         JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrects.");
                     }
@@ -360,8 +358,7 @@ public class LoginActivity extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Merci de remplir tous les champs avant de valider.");
         }
    
->>>>>>> master
-        
+  
     }//GEN-LAST:event_ConnectBGMouseReleased
 
     private void ConnectBG1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBG1MousePressed

@@ -5,6 +5,7 @@
  */
 package graphic;
 
+import Metier.User;
 import java.awt.Color;
 
 /**
@@ -20,19 +21,27 @@ public class Comptable extends javax.swing.JFrame {
     public Comptable(User currentCom) {
         initComponents();
         this.currentComptable = currentCom;
+        this.setVisible(true);
+        prepareWelcome();
     }
     
     
     
-    public void initCurrentUser(){
-        IDField.setText(this.currentComptable.getId());
-        nomField.setText(this.currentComptable.getNom());
-        prenomField.setText(this.currentComptable.getPrenom());
+    public void initCurrentComptable(){
+        String currentID = String.valueOf(this.currentComptable.getId());
+        IDField.setText(currentID);
+        nomField.setText(this.currentComptable.getLastName());
+        prenomField.setText(this.currentComptable.getFirstName());
         telField.setText(this.currentComptable.getTelephone());
         emailField.setText(this.currentComptable.getEmail());
         villeField.setText(this.currentComptable.getVille());
-        cpField.setText(this.currentComptable.getCode_Postal());
+        cpField.setText(this.currentComptable.getCode_postal());
         typeField.setText(this.currentComptable.getAccountType());
+    }
+    
+    
+    public void prepareWelcome(){
+        this.welcomeTXT.setText("Bienvenue "+ currentComptable.getFirstName());
     }
 
     /**
