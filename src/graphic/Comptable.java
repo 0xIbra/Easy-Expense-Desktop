@@ -21,8 +21,10 @@ public class Comptable extends javax.swing.JFrame {
     public Comptable(User currentCom) {
         initComponents();
         this.currentComptable = currentCom;
+        this.setResizable(false);
         this.setVisible(true);
         prepareWelcome();
+        this.setResizable(false);
     }
     
     public Comptable(){
@@ -31,15 +33,16 @@ public class Comptable extends javax.swing.JFrame {
     
     
     
-<<<<<<< HEAD
     public void initCurrentUser(){
         String currentUID = String.valueOf(this.currentComptable.getId());
         IDField.setText(currentUID);
-=======
+        
+    }
+    
+    
     public void initCurrentComptable(){
         String currentID = String.valueOf(this.currentComptable.getId());
         IDField.setText(currentID);
->>>>>>> master
         nomField.setText(this.currentComptable.getLastName());
         prenomField.setText(this.currentComptable.getFirstName());
         telField.setText(this.currentComptable.getTelephone());
@@ -456,7 +459,7 @@ public class Comptable extends javax.swing.JFrame {
                 .addGroup(AccountActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
                     .addComponent(typeField))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout mainContentLayout = new javax.swing.GroupLayout(mainContent);
@@ -474,9 +477,11 @@ public class Comptable extends javax.swing.JFrame {
         );
         mainContentLayout.setVerticalGroup(
             mainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(AccountActivity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(mainContentLayout.createSequentialGroup()
+                .addComponent(AccountActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(mainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(CommercialActivity, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
+                .addComponent(CommercialActivity, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))
             .addGroup(mainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainContentLayout.createSequentialGroup()
                     .addContainerGap()
