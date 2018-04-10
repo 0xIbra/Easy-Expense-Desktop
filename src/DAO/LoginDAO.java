@@ -5,8 +5,8 @@
  */
 package DAO;
 
-import Metier.CommercialUser;
-import Metier.ComptableUser;
+import Metier.User;
+import Metier.EntrepriseUser;
 import com.mysql.jdbc.Connection;
 import graphic.Commercial;
 import java.sql.ResultSet;
@@ -24,7 +24,7 @@ public class LoginDAO {
         this.conn = ConnexionDB.getConnexion();
     }
     
-    public CommercialUser authentificateUser(String userMail, String userMDP) throws SQLException{
+    public User authentificateCommercial(String userMail, String userMDP) throws SQLException{
         Statement transmission;
         ResultSet result;
         
@@ -32,10 +32,10 @@ public class LoginDAO {
         String SQL = "SELECT * FROM Utilisateur WHERE mailUtilisateur='"+userMail+"' AND mdpUtilisateur='"+userMDP+"' AND typeCompte = 'Commercial'";
         
         result = transmission.executeQuery(SQL);
-        CommercialUser tmpUser = null;
+        User tmpUser = null;
         
         while(result.next()){
-            tmpUser = new CommercialUser(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"));
+            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"));
             
         }
         
@@ -43,21 +43,19 @@ public class LoginDAO {
     }
     
     
-    public ComptableUser EnterpriseAuth(String userEmail, String userMDP) throws SQLException{
+    public User authentificateComptable(String userEmail, String userMDP) throws SQLException{
         Statement transmission;
         ResultSet result;
         
         transmission = conn.createStatement();
-        String SQL = "SELECT * FROM Utilisateur WHERE mailUtilisateur='"+userEmail+"' AND mdpUtilisateur='"+userMDP+"' AND typeCompte='Entreprise'";
+        String SQL = "SELECT * FROM Utilisateur WHERE mailUtilisateur='"+userEmail+"' AND mdpUtilisateur='"+userMDP+"' AND typeCompte='Comptable'";
         
         result = transmission.executeQuery(SQL);
-        ComptableUser tmpUser = null;
+        User tmpUser = null;
         
-        while(result.next()){
-            tmpUser = new ComptableUser(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"),
-            result.getString("raisonSociale"), result.getString("noSiret"),result.getString("codePostalUtilisateur"), 
-            result.getString("villeUtilisateur"), result.getString("telUtilisateur"),
-            result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"));
+         while(result.next()){
+            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"));
+            
         }
         
         return tmpUser;

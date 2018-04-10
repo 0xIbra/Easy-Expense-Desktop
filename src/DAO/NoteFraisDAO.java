@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Metier.CommercialUser;
+import Metier.User;
 import Metier.NoteFrais;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -42,7 +42,7 @@ public class NoteFraisDAO {
     
     
     
-    public ArrayList<NoteFrais> getNoteFraisByCommercial(CommercialUser c) throws SQLException{
+    public ArrayList<NoteFrais> getNoteFraisByCommercial(User c) throws SQLException{
         Statement transmission;
         ResultSet result;
         

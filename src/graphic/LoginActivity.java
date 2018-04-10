@@ -6,7 +6,7 @@
 package graphic;
 
 import DAO.LoginDAO;
-import Metier.CommercialUser;
+import Metier.User;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
  * @author ibrah
  */
 public class LoginActivity extends javax.swing.JFrame {
-    private CommercialUser currentUser;
+    private User currentUser;
+    private User currentComptable;
     
     /**
      * Creates new form LoginActivity
@@ -37,15 +38,15 @@ public class LoginActivity extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        entreprisePanel = new javax.swing.JPanel();
+        ComptablePanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        loginEmailField = new javax.swing.JTextField();
+        loginComptableEmailField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        loginPassField = new javax.swing.JPasswordField();
+        loginComptablePassField = new javax.swing.JPasswordField();
         ConnectBG = new javax.swing.JPanel();
         ConnectTEXT = new javax.swing.JLabel();
         commercialPanel = new javax.swing.JPanel();
@@ -63,7 +64,7 @@ public class LoginActivity extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        entreprisePanel.setBackground(new java.awt.Color(35, 38, 53));
+        ComptablePanel.setBackground(new java.awt.Color(35, 38, 53));
 
         jLabel1.setFont(new java.awt.Font("Montserrat", 0, 32)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,10 +85,10 @@ public class LoginActivity extends javax.swing.JFrame {
         jSeparator1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 20));
 
-        loginEmailField.setBackground(new java.awt.Color(35, 38, 53));
-        loginEmailField.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        loginEmailField.setForeground(new java.awt.Color(255, 255, 255));
-        loginEmailField.setBorder(null);
+        loginComptableEmailField.setBackground(new java.awt.Color(35, 38, 53));
+        loginComptableEmailField.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        loginComptableEmailField.setForeground(new java.awt.Color(255, 255, 255));
+        loginComptableEmailField.setBorder(null);
 
         jLabel5.setBackground(new java.awt.Color(35, 38, 53));
         jLabel5.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
@@ -100,9 +101,9 @@ public class LoginActivity extends javax.swing.JFrame {
         jSeparator2.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         jSeparator2.setPreferredSize(new java.awt.Dimension(50, 20));
 
-        loginPassField.setBackground(new java.awt.Color(35, 38, 53));
-        loginPassField.setForeground(new java.awt.Color(255, 255, 255));
-        loginPassField.setBorder(null);
+        loginComptablePassField.setBackground(new java.awt.Color(35, 38, 53));
+        loginComptablePassField.setForeground(new java.awt.Color(255, 255, 255));
+        loginComptablePassField.setBorder(null);
 
         ConnectBG.setBackground(new java.awt.Color(92, 235, 181));
         ConnectBG.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(92, 235, 181), 1, true));
@@ -139,36 +140,34 @@ public class LoginActivity extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout entreprisePanelLayout = new javax.swing.GroupLayout(entreprisePanel);
-        entreprisePanel.setLayout(entreprisePanelLayout);
-        entreprisePanelLayout.setHorizontalGroup(
-            entreprisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entreprisePanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout ComptablePanelLayout = new javax.swing.GroupLayout(ComptablePanel);
+        ComptablePanel.setLayout(ComptablePanelLayout);
+        ComptablePanelLayout.setHorizontalGroup(
+            ComptablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ComptablePanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(126, 126, 126))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entreprisePanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ComptablePanelLayout.createSequentialGroup()
                 .addContainerGap(48, Short.MAX_VALUE)
-                .addGroup(entreprisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(entreprisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(entreprisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
-                            .addComponent(loginPassField, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
+                .addGroup(ComptablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ComptablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel5)
+                        .addComponent(loginComptablePassField, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
-                    .addGroup(entreprisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(ComptablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(ConnectBG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(entreprisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(loginEmailField)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entreprisePanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(83, 83, 83))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
+                        .addComponent(loginComptableEmailField)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ComptablePanelLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(83, 83, 83))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(50, 50, 50))
         );
-        entreprisePanelLayout.setVerticalGroup(
-            entreprisePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(entreprisePanelLayout.createSequentialGroup()
+        ComptablePanelLayout.setVerticalGroup(
+            ComptablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ComptablePanelLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -176,13 +175,13 @@ public class LoginActivity extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginComptableEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loginPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginComptablePassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -190,7 +189,7 @@ public class LoginActivity extends javax.swing.JFrame {
                 .addGap(85, 85, 85))
         );
 
-        getContentPane().add(entreprisePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 530));
+        getContentPane().add(ComptablePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 530));
 
         commercialPanel.setBackground(new java.awt.Color(57, 55, 76));
 
@@ -335,6 +334,31 @@ public class LoginActivity extends javax.swing.JFrame {
 
     private void ConnectBGMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBGMouseReleased
         ConnectBG.setBackground(new Color(92,235,181));
+        
+        if(!"".equals(loginComptableEmailField.getText()) && !"".equals(loginComptablePassField.getPassword())){
+            if(loginComptableEmailField.getText().contains("@") && loginComptableEmailField.getText().contains(".")){
+                 try {
+                    LoginDAO conn = new LoginDAO();
+                    String pass = new String(loginComptablePassField.getPassword());
+                    this.currentComptable = conn.authentificateComptable(loginComptableEmailField.getText(), pass);
+                    if(loginComptableEmailField.getText().equals(this.currentComptable.getEmail()) && pass.equals(this.currentComptable.getPassword())){
+                        this.dispose();
+                        Comptable f = new Comptable(this.currentComptable);
+                        f.prepareWelcome(this.currentComptable.getFirstName());
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrects.");
+                    }
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LoginActivity.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginActivity.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Merci de remplir tous les champs avant de valider.");
+        }
+   
+        
     }//GEN-LAST:event_ConnectBGMouseReleased
 
     private void ConnectBG1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBG1MousePressed
@@ -349,7 +373,7 @@ public class LoginActivity extends javax.swing.JFrame {
                 try {
                     LoginDAO conn = new LoginDAO();
                     String pass = new String(loginCommercialPassField.getPassword());
-                    this.currentUser = conn.authentificateUser(loginCommercialEmailField.getText(), pass);
+                    this.currentUser = conn.authentificateCommercial(loginCommercialEmailField.getText(), pass);
                     if(loginCommercialEmailField.getText().equals(this.currentUser.getEmail()) && pass.equals(this.currentUser.getPassword())){
                         this.dispose();
                         Commercial f = new Commercial(this.currentUser);
@@ -409,13 +433,13 @@ public class LoginActivity extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ComptablePanel;
     private javax.swing.JPanel ConnectBG;
     private javax.swing.JPanel ConnectBG1;
     private javax.swing.JLabel ConnectTEXT;
     private javax.swing.JLabel ConnectTEXT1;
     private javax.swing.JPanel commercialPanel;
     private javax.swing.JLabel commercialPanelTITLE;
-    private javax.swing.JPanel entreprisePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -429,7 +453,7 @@ public class LoginActivity extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField loginCommercialEmailField;
     private javax.swing.JPasswordField loginCommercialPassField;
-    private javax.swing.JTextField loginEmailField;
-    private javax.swing.JPasswordField loginPassField;
+    private javax.swing.JTextField loginComptableEmailField;
+    private javax.swing.JPasswordField loginComptablePassField;
     // End of variables declaration//GEN-END:variables
 }
