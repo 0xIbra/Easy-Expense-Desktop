@@ -335,6 +335,8 @@ public class LoginActivity extends javax.swing.JFrame {
 
     private void ConnectBGMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBGMouseReleased
         ConnectBG.setBackground(new Color(92,235,181));
+        
+        
     }//GEN-LAST:event_ConnectBGMouseReleased
 
     private void ConnectBG1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConnectBG1MousePressed
