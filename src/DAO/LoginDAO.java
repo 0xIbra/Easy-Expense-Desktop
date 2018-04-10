@@ -6,7 +6,7 @@
 package DAO;
 
 import Metier.CommercialUser;
-import Metier.EntrepriseUser;
+import Metier.ComptableUser;
 import com.mysql.jdbc.Connection;
 import graphic.Commercial;
 import java.sql.ResultSet;
@@ -43,7 +43,7 @@ public class LoginDAO {
     }
     
     
-    public EntrepriseUser EnterpriseAuth(String userEmail, String userMDP) throws SQLException{
+    public ComptableUser EnterpriseAuth(String userEmail, String userMDP) throws SQLException{
         Statement transmission;
         ResultSet result;
         
@@ -51,10 +51,10 @@ public class LoginDAO {
         String SQL = "SELECT * FROM Utilisateur WHERE mailUtilisateur='"+userEmail+"' AND mdpUtilisateur='"+userMDP+"' AND typeCompte='Entreprise'";
         
         result = transmission.executeQuery(SQL);
-        EntrepriseUser tmpUser = null;
+        ComptableUser tmpUser = null;
         
         while(result.next()){
-            tmpUser = new EntrepriseUser(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"),
+            tmpUser = new ComptableUser(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"),
             result.getString("raisonSociale"), result.getString("noSiret"),result.getString("codePostalUtilisateur"), 
             result.getString("villeUtilisateur"), result.getString("telUtilisateur"),
             result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"));

@@ -22,6 +22,9 @@ public class Easy_Expense {
         f.setVisible(true);
         f.setSize(870, 530);
         f.setResizable(false);
+        f.setLocationRelativeTo(null);
+        
+        
     }
     
 }

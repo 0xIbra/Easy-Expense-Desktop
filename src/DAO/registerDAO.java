@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Metier.EntrepriseUser;
+import Metier.ComptableUser;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,7 +22,7 @@ public class registerDAO {
         this.conn = ConnexionDB.getConnexion();
     }
     
-    public boolean RegisterEnterprise(EntrepriseUser user) throws SQLException{
+    public boolean RegisterEnterprise(ComptableUser user) throws SQLException{
         Statement transmission;
         
         transmission = conn.createStatement();
