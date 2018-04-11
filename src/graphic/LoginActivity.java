@@ -28,6 +28,8 @@ public class LoginActivity extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Login - Easy Expense");
         this.setResizable(false);
+        this.setSize(870, 530);
+        this.setLocationRelativeTo(null);
     }
 
     /**
