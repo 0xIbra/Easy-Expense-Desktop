@@ -5,9 +5,18 @@
  */
 package graphic;
 
+import DAO.NoteFraisDAO;
+import DAO.UserDAO;
 import Metier.NoteFrais;
 import Metier.User;
 import java.awt.Color;
+import java.awt.Component;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -15,11 +24,20 @@ import java.awt.Color;
  */
 public class Comptable extends javax.swing.JFrame {
     private User currentComptable;
+    
+    private NoteFraisDAO conn;
+    private UserDAO userConn;
+    
+    private ArrayList<User> selectedUsers;
+    private ArrayList<NoteFrais> notesFraisSelectedUser;
+    
+    
+    private DefaultListModel dm = new DefaultListModel();
 
     /**
      * Creates new form Comptable
      */
-    public Comptable(User currentCom) {
+    public Comptable(User currentCom) throws ClassNotFoundException {
         initComponents();
         this.currentComptable = currentCom;
         this.setSize(870, 550);
@@ -29,6 +47,13 @@ public class Comptable extends javax.swing.JFrame {
         this.setVisible(true);
         this.prepareWelcome();
         initAccountActivity();
+        try {
+            this.getCurrentNotesFrais();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public Comptable(){
@@ -41,8 +66,6 @@ public class Comptable extends javax.swing.JFrame {
         this.GestionCommercialActivity.setVisible(false);
         this.ListeNoteFraisActivity.setVisible(false);
         this.listeCommercialActivity.setVisible(false);
-        
-        
     }
     
     
@@ -50,7 +73,18 @@ public class Comptable extends javax.swing.JFrame {
     public void initCurrentUser(){
         String currentUID = String.valueOf(this.currentComptable.getId());
         IDField.setText(currentUID);
+    }
+    
+    
+    
+    public void getCurrentNotesFrais() throws ClassNotFoundException, SQLException{
+        this.userConn = new UserDAO();
         
+        this.selectedUsers = userConn.getUsersFromEnterprise(this.currentComptable);
+        
+        for (User selectedUser : selectedUsers) {
+            this.currentCommercialBox.addItem(selectedUser.getFirstName() + " "+ selectedUser.getLastName());
+        }
     }
     
     
@@ -70,6 +104,18 @@ public class Comptable extends javax.swing.JFrame {
     public void prepareWelcome(){
         this.welcomeTXT.setText("Bienvenue "+ currentComptable.getFirstName());
     }
+    
+    
+    public void addItemToList(ArrayList<String> items){
+        this.notesFraisContainer.setModel(dm);
+        dm.clear();
+        for(int i = 0; i < items.size(); i++){
+            dm.addElement(items.get(i));
+        }
+        
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,11 +145,15 @@ public class Comptable extends javax.swing.JFrame {
         listeCommercialActivity = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        currentCommercial = new javax.swing.JComboBox<>();
+        currentCommercialBox = new javax.swing.JComboBox<>();
         printBTN = new javax.swing.JPanel();
         printLabel = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        notesFraisContainer = new javax.swing.JList<>();
+        ValidateBTN = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        getDetailsBTN = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         ListeNoteFraisActivity = new javax.swing.JPanel();
         AccountActivity = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -362,9 +412,14 @@ public class Comptable extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
 
-        currentCommercial.setBackground(new java.awt.Color(35, 38, 53));
-        currentCommercial.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        currentCommercial.setForeground(new java.awt.Color(255, 255, 255));
+        currentCommercialBox.setBackground(new java.awt.Color(35, 38, 53));
+        currentCommercialBox.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        currentCommercialBox.setForeground(new java.awt.Color(255, 255, 255));
+        currentCommercialBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentCommercialBoxActionPerformed(evt);
+            }
+        });
 
         printBTN.setBackground(new java.awt.Color(35, 38, 53));
         printBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(92, 235, 181), 1, true));
@@ -395,10 +450,68 @@ public class Comptable extends javax.swing.JFrame {
             .addComponent(printLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
         );
 
-        jScrollPane2.setBackground(new java.awt.Color(35, 38, 53));
-        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
+        notesFraisContainer.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        notesFraisContainer.setForeground(new java.awt.Color(50, 50, 50));
+        notesFraisContainer.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                notesFraisContainerValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(notesFraisContainer);
 
-        jScrollPane2.setViewportView(jList1);
+        ValidateBTN.setBackground(new java.awt.Color(35, 38, 53));
+        ValidateBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(92, 235, 181), 1, true));
+
+        jLabel6.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Valider");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel6MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel6MouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ValidateBTNLayout = new javax.swing.GroupLayout(ValidateBTN);
+        ValidateBTN.setLayout(ValidateBTNLayout);
+        ValidateBTNLayout.setHorizontalGroup(
+            ValidateBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+        );
+        ValidateBTNLayout.setVerticalGroup(
+            ValidateBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        );
+
+        getDetailsBTN.setBackground(new java.awt.Color(35, 38, 53));
+        getDetailsBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(92, 235, 181), 1, true));
+
+        jLabel8.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Voir en details");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel8MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel8MouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout getDetailsBTNLayout = new javax.swing.GroupLayout(getDetailsBTN);
+        getDetailsBTN.setLayout(getDetailsBTNLayout);
+        getDetailsBTNLayout.setHorizontalGroup(
+            getDetailsBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+        );
+        getDetailsBTNLayout.setVerticalGroup(
+            getDetailsBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout listeCommercialActivityLayout = new javax.swing.GroupLayout(listeCommercialActivity);
         listeCommercialActivity.setLayout(listeCommercialActivityLayout);
@@ -406,27 +519,26 @@ public class Comptable extends javax.swing.JFrame {
             listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(listeCommercialActivityLayout.createSequentialGroup()
                 .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listeCommercialActivityLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(listeCommercialActivityLayout.createSequentialGroup()
-                        .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(31, 31, 31)
+                        .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(currentCommercialBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(listeCommercialActivityLayout.createSequentialGroup()
-                                .addGap(200, 200, 200)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(listeCommercialActivityLayout.createSequentialGroup()
-                                .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(listeCommercialActivityLayout.createSequentialGroup()
-                                        .addGap(340, 340, 340)
-                                        .addComponent(currentCommercial, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, listeCommercialActivityLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(37, 37, 37)))
-                                .addComponent(printBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 106, Short.MAX_VALUE)))
-                .addContainerGap())
+                                        .addComponent(ValidateBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(74, 74, 74)
+                                        .addComponent(getDetailsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(printBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(listeCommercialActivityLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(listeCommercialActivityLayout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         listeCommercialActivityLayout.setVerticalGroup(
             listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,16 +547,20 @@ public class Comptable extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(currentCommercialBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(listeCommercialActivityLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(currentCommercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(96, 96, 96)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(listeCommercialActivityLayout.createSequentialGroup()
-                        .addGap(202, 202, 202)
+                        .addGap(154, 154, 154)
                         .addComponent(printBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(215, 215, 215))
+                .addGap(76, 76, 76)
+                .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ValidateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(getDetailsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         ListeNoteFraisActivity.setBackground(new java.awt.Color(35, 38, 53));
@@ -733,7 +849,53 @@ public class Comptable extends javax.swing.JFrame {
         printBTN.setBackground(new Color(35,38,53));
     }//GEN-LAST:event_printLabelMouseReleased
 
+    private void currentCommercialBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentCommercialBoxActionPerformed
+        
+        try {
+            getSelectedUsersNotes();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_currentCommercialBoxActionPerformed
 
+    private void notesFraisContainerValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_notesFraisContainerValueChanged
+        
+    }//GEN-LAST:event_notesFraisContainerValueChanged
+
+    private void jLabel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MousePressed
+        getDetailsBTN.setBackground(new Color(92,235,181));
+    }//GEN-LAST:event_jLabel8MousePressed
+
+    private void jLabel8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseReleased
+        getDetailsBTN.setBackground(new Color(35,38,53));
+    }//GEN-LAST:event_jLabel8MouseReleased
+
+    private void jLabel6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseReleased
+        ValidateBTN.setBackground(new Color(35,38,53));
+    }//GEN-LAST:event_jLabel6MouseReleased
+
+    private void jLabel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MousePressed
+        ValidateBTN.setBackground(new Color(92,235,181));
+    }//GEN-LAST:event_jLabel6MousePressed
+
+    
+    public void getSelectedUsersNotes() throws ClassNotFoundException{
+        this.conn = new NoteFraisDAO();
+        try {
+            int selectedindex = this.currentCommercialBox.getSelectedIndex();
+            User tmp = this.selectedUsers.get(selectedindex);
+            this.notesFraisSelectedUser = conn.getNotesFraisByUserID(tmp.getId());
+            ArrayList<String> items = new ArrayList<String>();
+            for (NoteFrais noteFrais : notesFraisSelectedUser) {
+                items.add(noteFrais.getLibelle()+" - Etat : "+noteFrais.getEtat());
+            }
+            this.addItemToList(items);
+        } catch (SQLException ex) {
+            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccountActivity;
     private javax.swing.JPanel GestionCommercialActivity;
@@ -741,9 +903,11 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel GestionCommercialLabel;
     private javax.swing.JLabel IDField;
     private javax.swing.JPanel ListeNoteFraisActivity;
+    private javax.swing.JPanel ValidateBTN;
     private javax.swing.JLabel cpField;
-    private javax.swing.JComboBox<String> currentCommercial;
+    private javax.swing.JComboBox<String> currentCommercialBox;
     private javax.swing.JLabel emailField;
+    private javax.swing.JPanel getDetailsBTN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -753,10 +917,11 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel listeCommercial;
@@ -768,6 +933,7 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel myAccountBTN;
     private javax.swing.JPanel myaccBTN;
     private javax.swing.JLabel nomField;
+    private javax.swing.JList<String> notesFraisContainer;
     private javax.swing.JLabel prenomField;
     private javax.swing.JPanel printBTN;
     private javax.swing.JLabel printLabel;

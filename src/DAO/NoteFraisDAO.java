@@ -42,24 +42,21 @@ public class NoteFraisDAO {
     
     
     
-    public ArrayList<NoteFrais> getNoteFraisByCommercial(User c) throws SQLException{
+    public ArrayList<NoteFrais> getNotesFraisByUserID(int UserID) throws SQLException{
         Statement transmission;
         ResultSet result;
         
         transmission = conn.createStatement();
-        String SQL = "SELECT codeFrais, libelle, dateFrais, dateSoumission, commentaireFrais FROM NoteDeFrais, Utilisateur "
-                + "WHERE NoteDeFrais.idUtilisateur = Utilisateur.idUtilisateur AND NoteDeFrais.idUtilisateur = "+c.getId();
+        
+        String SQL = "SELECT * FROM NoteDeFrais WHERE idUtilisateur = "+UserID;
         
         result = transmission.executeQuery(SQL);
-        
-        ArrayList<NoteFrais> tmpHolder = null;
-        
+        ArrayList<NoteFrais> list = new ArrayList<NoteFrais>();
         while(result.next()){
-            
-            tmpHolder.add(new NoteFrais(result.getInt("codeFrais"), result.getString("libelle"), result.getString("dateFrais"), result.getString("dateSoumission"), 
-            result.getString("commentaireFrais")));
+            list.add(new NoteFrais(result.getInt("codeFrais"), result.getString("libelleNote"), result.getString("dateFrais"), result.getString("dateSoumission"), result.getString("villeFrais"), result.getString("commentaireFrais"), result.getString("etat")));
         }
-        return tmpHolder;
+        
+        return list;
     }
     
 }
