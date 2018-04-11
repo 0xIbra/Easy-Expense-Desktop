@@ -591,6 +591,7 @@ public class Comptable extends javax.swing.JFrame {
     }//GEN-LAST:event_listeCommercialLabelMousePressed
 
     private void listeCommercialLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listeCommercialLabelMouseReleased
+        listeCommercial.setBackground(new Color(57,55,76));
         this.GestionCommercialActivity.setVisible(false);
         this.AccountActivity.setVisible(false);
         this.ListeNoteFraisActivity.setVisible(false);
