@@ -25,6 +25,7 @@ public class Commercial extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Commercial");
         this.setVisible(true);
+        this.setResizable(false);
     }
     
     public Commercial(User user) {
