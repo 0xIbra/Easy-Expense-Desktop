@@ -17,17 +17,19 @@ public class User {
     private String code_postal;
     private String ville;
     private String telephone;
+    private String adresse;
     private String accountType;
     private String LastName;
     private String FirstName;
     
     
-    public User(String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom){
+    public User(String email, String password, String codepostale, String ville, String tel,String adresse, String accType, String nom, String prenom){
         this.email = email;
         this.password = password;
         this.code_postal = codepostale;
         this.ville = ville;
         this.telephone = tel;
+        this.adresse = adresse;
         this.accountType = accType;
         this.LastName = nom;
         this.FirstName = prenom;
@@ -40,10 +42,28 @@ public class User {
         this.code_postal = codepostale;
         this.ville = ville;
         this.telephone = tel;
+
         this.accountType = accType;
         this.LastName = nom;
         this.FirstName = prenom;
     }
+
+    public User(String LastName, String FirstName) {
+        this.LastName = LastName;
+        this.FirstName = FirstName;
+    }
+
+    public User(String LastName) {
+        this.LastName = LastName;
+    }
+
+    public User(int id, String LastName, String FirstName) {
+        this.id = id;
+        this.LastName = LastName;
+        this.FirstName = FirstName;
+    }
+    
+    
     
     
     
@@ -121,16 +141,11 @@ public class User {
     public void setFirstName(String FirstName) {
         this.FirstName = FirstName;
     }
+
+    @Override
+    public String toString() {
+        return  LastName + " " + FirstName;
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     
 }

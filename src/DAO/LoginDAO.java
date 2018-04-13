@@ -6,9 +6,7 @@
 package DAO;
 
 import Metier.User;
-import Metier.EntrepriseUser;
 import com.mysql.jdbc.Connection;
-import graphic.Commercial;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
