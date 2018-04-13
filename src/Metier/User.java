@@ -21,9 +21,14 @@ public class User {
     private String accountType;
     private String LastName;
     private String FirstName;
+    private int idEntreprise;
     
     
+<<<<<<< HEAD
     public User(String email, String password, String codepostale, String ville, String tel,String adresse, String accType, String nom, String prenom){
+=======
+    public User(String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom, int idEnterprise){
+>>>>>>> ibragim
         this.email = email;
         this.password = password;
         this.code_postal = codepostale;
@@ -33,9 +38,10 @@ public class User {
         this.accountType = accType;
         this.LastName = nom;
         this.FirstName = prenom;
+        this.idEntreprise = idEnterprise;
     }
     
-    public User(int id, String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom){
+    public User(int id, String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom, int idEnterprise){
         this.id = id;
         this.email = email;
         this.password = password;
@@ -46,6 +52,7 @@ public class User {
         this.accountType = accType;
         this.LastName = nom;
         this.FirstName = prenom;
+        this.idEntreprise = idEnterprise;
     }
 
     public User(String LastName, String FirstName) {
@@ -66,9 +73,18 @@ public class User {
     
     
     
+    public String toString(){
+        return this.FirstName + " " + this.LastName;
+    }
     
-    
-    
+
+    public int getIdEntreprise() {
+        return idEntreprise;
+    }
+
+    public void setIdEntreprise(int idEntreprise) {
+        this.idEntreprise = idEntreprise;
+    }   
 
     public int getId() {
         return id;
@@ -140,6 +156,7 @@ public class User {
 
     public void setFirstName(String FirstName) {
         this.FirstName = FirstName;
+<<<<<<< HEAD
     }
 
     @Override
@@ -148,4 +165,8 @@ public class User {
     }
     
      
+=======
+    }    
+    
+>>>>>>> ibragim
 }

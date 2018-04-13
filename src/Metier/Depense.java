@@ -9,27 +9,29 @@ package Metier;
  *
  * @author ibrah
  */
-public class Depense {
+public abstract class Depense {
     private int id;
     private String datePaiement;
     private float montantRem;
-    private boolean etat = false;
+    private String etat;
     private String dateValidation;
     private float montantDepense;
 
-    public Depense(int id, String datePaiement, float montantRem, String dateValidation, float montantDepense) {
+    public Depense(int id, String datePaiement, float montantRem, String dateValidation, float montantDepense, String etat) {
         this.id = id;
         this.datePaiement = datePaiement;
         this.montantRem = montantRem;
         this.dateValidation = dateValidation;
         this.montantDepense = montantDepense;
+        this.etat = etat;
     }
 
-    public Depense(String datePaiement, float montantRem, String dateValidation, float montantDepense) {
+    public Depense(String datePaiement, float montantRem, String dateValidation, float montantDepense, String etat) {
         this.datePaiement = datePaiement;
         this.montantRem = montantRem;
         this.dateValidation = dateValidation;
         this.montantDepense = montantDepense;
+        this.etat = etat;
     }
     
     
@@ -42,8 +44,7 @@ public class Depense {
 
     
     
-    
-
+    public abstract String getTypeDepense();
     
     public int getId() {
         return id;
@@ -69,11 +70,11 @@ public class Depense {
         this.montantRem = montantRem;
     }
 
-    public boolean isEtat() {
+    public String isEtat() {
         return etat;
     }
 
-    public void setEtat(boolean etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
 

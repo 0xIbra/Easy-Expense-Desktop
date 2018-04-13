@@ -5,7 +5,6 @@
  */
 package IHM;
 
-import Metier.AutreFrais;
 import java.awt.Color;
 
 /**
