@@ -83,7 +83,7 @@ public class Comptable extends javax.swing.JFrame {
         this.selectedUsers = userConn.getUsersFromEnterprise(this.currentComptable);
         
         for (User selectedUser : selectedUsers) {
-            this.currentCommercialBox.addItem(selectedUser.getFirstName() + " "+ selectedUser.getLastName());
+            this.currentCommercialBox.addItem(selectedUser);
         }
     }
     
@@ -106,7 +106,7 @@ public class Comptable extends javax.swing.JFrame {
     }
     
     
-    public void addItemToList(ArrayList<String> items){
+    public void addItemToList(ArrayList<NoteFrais> items){
         this.notesFraisContainer.setModel(dm);
         dm.clear();
         for(int i = 0; i < items.size(); i++){
@@ -450,8 +450,10 @@ public class Comptable extends javax.swing.JFrame {
             .addComponent(printLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
         );
 
+        notesFraisContainer.setBackground(new java.awt.Color(35, 38, 53));
         notesFraisContainer.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        notesFraisContainer.setForeground(new java.awt.Color(50, 50, 50));
+        notesFraisContainer.setForeground(new java.awt.Color(255, 255, 255));
+        notesFraisContainer.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         notesFraisContainer.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 notesFraisContainerValueChanged(evt);
@@ -756,9 +758,7 @@ public class Comptable extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(sidepanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(sidepanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(mainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -850,7 +850,6 @@ public class Comptable extends javax.swing.JFrame {
     }//GEN-LAST:event_printLabelMouseReleased
 
     private void currentCommercialBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentCommercialBoxActionPerformed
-        
         try {
             getSelectedUsersNotes();
         } catch (ClassNotFoundException ex) {
@@ -867,7 +866,19 @@ public class Comptable extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MousePressed
 
     private void jLabel8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseReleased
-        getDetailsBTN.setBackground(new Color(35,38,53));
+        try {
+            getDetailsBTN.setBackground(new Color(35,38,53));
+            
+            NoteFrais note = (NoteFrais) notesFraisContainer.getSelectedValue();
+            DepenseActivity depenseF = new DepenseActivity(note);
+            depenseF.setTitle("Note de frais "+notesFraisContainer.getSelectedValue().toString());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_jLabel8MouseReleased
 
     private void jLabel6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseReleased
@@ -882,17 +893,27 @@ public class Comptable extends javax.swing.JFrame {
     public void getSelectedUsersNotes() throws ClassNotFoundException{
         this.conn = new NoteFraisDAO();
         try {
-            int selectedindex = this.currentCommercialBox.getSelectedIndex();
-            User tmp = this.selectedUsers.get(selectedindex);
-            this.notesFraisSelectedUser = conn.getNotesFraisByUserID(tmp.getId());
-            ArrayList<String> items = new ArrayList<String>();
-            for (NoteFrais noteFrais : notesFraisSelectedUser) {
-                items.add(noteFrais.getLibelle()+" - Etat : "+noteFrais.getEtat());
-            }
-            this.addItemToList(items);
+            User selectedUser = (User) this.currentCommercialBox.getSelectedItem();
+            this.notesFraisSelectedUser = conn.getNotesFraisByUserID(selectedUser.getId());
+            
+            this.addItemToList(this.notesFraisSelectedUser);
         } catch (SQLException ex) {
             Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    
+    
+    public void showDetailsOfSelectedNoteFrais() throws ClassNotFoundException{
+        try {
+            NoteFrais currentNote = (NoteFrais) notesFraisContainer.getSelectedValue();
+            
+            DepenseActivity depenseF = new DepenseActivity(currentNote);
+            depenseF.setTitle("Note de frais " + currentNote.getLibelle());
+        } catch (SQLException ex) {
+            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     
@@ -905,7 +926,7 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JPanel ListeNoteFraisActivity;
     private javax.swing.JPanel ValidateBTN;
     private javax.swing.JLabel cpField;
-    private javax.swing.JComboBox<String> currentCommercialBox;
+    private javax.swing.JComboBox<Object> currentCommercialBox;
     private javax.swing.JLabel emailField;
     private javax.swing.JPanel getDetailsBTN;
     private javax.swing.JLabel jLabel1;
@@ -933,7 +954,7 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel myAccountBTN;
     private javax.swing.JPanel myaccBTN;
     private javax.swing.JLabel nomField;
-    private javax.swing.JList<String> notesFraisContainer;
+    private javax.swing.JList<Object> notesFraisContainer;
     private javax.swing.JLabel prenomField;
     private javax.swing.JPanel printBTN;
     private javax.swing.JLabel printLabel;

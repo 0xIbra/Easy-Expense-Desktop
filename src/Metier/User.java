@@ -49,7 +49,9 @@ public class User {
     }
     
     
-    
+    public String toString(){
+        return this.FirstName + " " + this.LastName;
+    }
     
 
     public int getIdEntreprise() {

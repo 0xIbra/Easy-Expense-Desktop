@@ -5,7 +5,6 @@
  */
 package graphic;
 
-import Metier.AutreFrais;
 import java.awt.Color;
 
 /**

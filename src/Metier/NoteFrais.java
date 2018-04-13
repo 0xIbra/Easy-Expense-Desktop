@@ -40,6 +40,11 @@ public class NoteFrais {
         this.commentaire = commentaire;
         this.etat = etat;
     }
+    
+    
+    public String toString(){
+        return this.libelle + " - Etat : "+this.etat;
+    }
 
     public String getVille() {
         return ville;
