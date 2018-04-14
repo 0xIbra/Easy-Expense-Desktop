@@ -5,6 +5,7 @@
  */
 package graphic;
 
+import DAO.DepenseDAO;
 import DAO.NoteFraisDAO;
 import DAO.UserDAO;
 import Metier.NoteFrais;
@@ -17,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +29,7 @@ public class Comptable extends javax.swing.JFrame {
     
     private NoteFraisDAO conn;
     private UserDAO userConn;
+    private DepenseDAO depenseConn;
     
     private ArrayList<User> selectedUsers;
     private ArrayList<NoteFrais> notesFraisSelectedUser;
@@ -154,6 +157,8 @@ public class Comptable extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         getDetailsBTN = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        refusBTN = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         ListeNoteFraisActivity = new javax.swing.JPanel();
         AccountActivity = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -481,11 +486,11 @@ public class Comptable extends javax.swing.JFrame {
         ValidateBTN.setLayout(ValidateBTNLayout);
         ValidateBTNLayout.setHorizontalGroup(
             ValidateBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
         );
         ValidateBTNLayout.setVerticalGroup(
             ValidateBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getDetailsBTN.setBackground(new java.awt.Color(35, 38, 53));
@@ -515,6 +520,33 @@ public class Comptable extends javax.swing.JFrame {
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        refusBTN.setBackground(new java.awt.Color(35, 38, 53));
+        refusBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(217, 83, 79), 1, true));
+
+        jLabel10.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Refus");
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel10MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel10MouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout refusBTNLayout = new javax.swing.GroupLayout(refusBTN);
+        refusBTN.setLayout(refusBTNLayout);
+        refusBTNLayout.setHorizontalGroup(
+            refusBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+        );
+        refusBTNLayout.setVerticalGroup(
+            refusBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout listeCommercialActivityLayout = new javax.swing.GroupLayout(listeCommercialActivity);
         listeCommercialActivity.setLayout(listeCommercialActivityLayout);
         listeCommercialActivityLayout.setHorizontalGroup(
@@ -522,24 +554,26 @@ public class Comptable extends javax.swing.JFrame {
             .addGroup(listeCommercialActivityLayout.createSequentialGroup()
                 .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(listeCommercialActivityLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(currentCommercialBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(listeCommercialActivityLayout.createSequentialGroup()
-                                .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(listeCommercialActivityLayout.createSequentialGroup()
-                                        .addComponent(ValidateBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(74, 74, 74)
-                                        .addComponent(getDetailsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(printBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(listeCommercialActivityLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(listeCommercialActivityLayout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(listeCommercialActivityLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(listeCommercialActivityLayout.createSequentialGroup()
+                                .addComponent(refusBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(ValidateBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(getDetailsBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(currentCommercialBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(listeCommercialActivityLayout.createSequentialGroup()
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(printBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         listeCommercialActivityLayout.setVerticalGroup(
@@ -558,11 +592,12 @@ public class Comptable extends javax.swing.JFrame {
                     .addGroup(listeCommercialActivityLayout.createSequentialGroup()
                         .addGap(154, 154, 154)
                         .addComponent(printBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(76, 76, 76)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(listeCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(refusBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ValidateBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(getDetailsBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(48, 48, 48))
         );
 
         ListeNoteFraisActivity.setBackground(new java.awt.Color(35, 38, 53));
@@ -866,28 +901,87 @@ public class Comptable extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MousePressed
 
     private void jLabel8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseReleased
-        try {
-            getDetailsBTN.setBackground(new Color(35,38,53));
-            
+        getDetailsBTN.setBackground(new Color(35,38,53));
+        if(notesFraisContainer.getSelectedValue() != null){
+            try {
             NoteFrais note = (NoteFrais) notesFraisContainer.getSelectedValue();
             DepenseActivity depenseF = new DepenseActivity(note);
             depenseF.setTitle("Note de frais "+notesFraisContainer.getSelectedValue().toString());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Merci de selectionner une note de frais");
         }
+        
         
         
     }//GEN-LAST:event_jLabel8MouseReleased
 
     private void jLabel6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseReleased
         ValidateBTN.setBackground(new Color(35,38,53));
+        
+        NoteFrais tmpNote = (NoteFrais) notesFraisContainer.getSelectedValue();
+        
+        if(tmpNote.getEtat().equals("Validé") || tmpNote.getEtat().equals("Refusé")){
+            JOptionPane.showMessageDialog(this, "Note de frais déjà traitée");
+        }else if(tmpNote.getEtat().equals("En Cours")){
+            if(notesFraisContainer.getSelectedValue() != null){
+               try {
+                   this.depenseConn = new DepenseDAO();
+                   boolean validate = depenseConn.validateDepensesAndNoteFrais(tmpNote.getId());
+                   if(validate == true){
+                       JOptionPane.showMessageDialog(this, "Note de frais validée avec toutes ses depenses");
+                       this.getSelectedUsersNotes();
+                   }else{
+                       JOptionPane.showMessageDialog(this, "Note de frais non validée, une erreur est survenue");
+                   }
+               } catch (ClassNotFoundException ex) {
+                   Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+               } catch (SQLException ex) {
+                   Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }else{
+               JOptionPane.showMessageDialog(this, "Merci de selectionner une note de frais");
+           }   
+        }
     }//GEN-LAST:event_jLabel6MouseReleased
 
     private void jLabel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MousePressed
         ValidateBTN.setBackground(new Color(92,235,181));
     }//GEN-LAST:event_jLabel6MousePressed
+
+    private void jLabel10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MousePressed
+        refusBTN.setBackground(new Color(217,83,79));
+    }//GEN-LAST:event_jLabel10MousePressed
+
+    private void jLabel10MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseReleased
+        refusBTN.setBackground(new Color(35,38,53));
+        
+        NoteFrais tmpNote = (NoteFrais) notesFraisContainer.getSelectedValue();
+        
+        if(tmpNote.getEtat().equals("Validé") || tmpNote.getEtat().equals("Refusé")){
+            JOptionPane.showMessageDialog(this, "Note de frais déjà traitée");
+        }else if(tmpNote.getEtat().equals("En Cours")){
+            if(notesFraisContainer.getSelectedValue() != null){
+                try {
+                    this.depenseConn = new DepenseDAO();
+                    boolean refusal = this.depenseConn.refuseDepenseAndNoteFrais(tmpNote.getId());
+                    if(refusal){
+                        JOptionPane.showMessageDialog(this, "Note de frais traitée");
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Une erreur est survenue");
+                    }
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jLabel10MouseReleased
 
     
     public void getSelectedUsersNotes() throws ClassNotFoundException{
@@ -930,6 +1024,7 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel emailField;
     private javax.swing.JPanel getDetailsBTN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
@@ -958,6 +1053,7 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel prenomField;
     private javax.swing.JPanel printBTN;
     private javax.swing.JLabel printLabel;
+    private javax.swing.JPanel refusBTN;
     private javax.swing.JPanel sidepanel;
     private javax.swing.JPanel signoutBTN;
     private javax.swing.JLabel telField;

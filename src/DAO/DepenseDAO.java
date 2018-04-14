@@ -7,6 +7,7 @@ package DAO;
 
 import Metier.Depense;
 import Metier.Frais;
+import Metier.NoteFrais;
 import Metier.Trajet;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -58,10 +59,52 @@ public class DepenseDAO {
     
     
     
-    public void updateDepense(Depense depense){
+    public boolean validateDepensesAndNoteFrais(int id) throws SQLException{
         Statement transmission;
         
+        transmission = conn.createStatement();
+        String SQL = "UPDATE Depense SET Depense.etatValidation = 'Validé' WHERE Depense.codeFrais = "+id;
+        int res = 0;
+        res = transmission.executeUpdate(SQL);
         
+        if(res != 0){
+            transmission = conn.createStatement();
+            res = 0;
+            SQL = "UPDATE NoteDeFrais SET NoteDeFrais.etat = 'Validé' WHERE NoteDeFrais.codeFrais = "+id;
+            res = transmission.executeUpdate(SQL);
+            if(res != 0){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+    
+    
+    
+    public boolean refuseDepenseAndNoteFrais(int id) throws SQLException{
+        Statement transmission;
+        
+        transmission = conn.createStatement();
+        String SQL = "UPDATE Depense SET Depense.etatValidation = 'Refusé' WHERE Depense.codeFrais = "+id;
+        int res = 0;
+        res = transmission.executeUpdate(SQL);
+        
+        if(res != 0){
+            transmission = conn.createStatement();
+            res = 0;
+            SQL = "UPDATE NoteDeFrais SET NoteDeFrais.etat = 'Refusé' WHERE NoteDeFrais.codeFrais = "+id;
+            res = transmission.executeUpdate(SQL);
+            if(res != 0){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
     
 }

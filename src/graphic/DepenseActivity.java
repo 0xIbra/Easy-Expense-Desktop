@@ -47,6 +47,28 @@ public class DepenseActivity extends javax.swing.JFrame {
         this.currentNote = note;
         this.setVisible(true);
         this.getDepensesForNote();
+        this.checkEtatNoteFrais();
+    }
+    
+    public void checkEtatNoteFrais(){
+        if(currentNote.getEtat().equals("Validé") || currentNote.getEtat().equals("Refusé")){
+            this.disableAllFields();
+        }
+    }
+    
+    
+    public void disableAllFields(){
+        dateField.setEnabled(false);
+        montantField.setEnabled(false);
+        etatField.setEnabled(false);
+        libelleField.setEnabled(false);
+        commentaireField.setEnabled(false);
+        dureeField.setEnabled(false);
+        villeDField.setEnabled(false);
+        villeAField.setEnabled(false);
+        dateAField.setEnabled(false);
+        dateRField.setEnabled(false);
+        distanceField.setEnabled(false);
     }
     
     
@@ -248,11 +270,11 @@ public class DepenseActivity extends javax.swing.JFrame {
             }
         });
 
-        commentaireField.setBackground(new java.awt.Color(35, 38, 53));
         commentaireField.setColumns(20);
+        commentaireField.setRows(3);
+        commentaireField.setBackground(new java.awt.Color(35, 38, 53));
         commentaireField.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         commentaireField.setForeground(new java.awt.Color(255, 255, 255));
-        commentaireField.setRows(3);
         jScrollPane1.setViewportView(commentaireField);
 
         dureeField.setText("jTextField1");
