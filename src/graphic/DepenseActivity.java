@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,6 +53,9 @@ public class DepenseActivity extends javax.swing.JFrame {
     
     public void checkEtatNoteFrais(){
         if(currentNote.getEtat().equals("Validé") || currentNote.getEtat().equals("Refusé")){
+            this.disableAllFields();
+        }else if(currentNote.getEtat().equals("En Cours")){
+            this.initTypeDepense();
             this.disableAllFields();
         }
     }
@@ -182,7 +186,7 @@ public class DepenseActivity extends javax.swing.JFrame {
         selectedDepense = new javax.swing.JComboBox<>();
         fermerBTN = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        modifierBTN = new javax.swing.JPanel();
+        validerBTN = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -243,6 +247,7 @@ public class DepenseActivity extends javax.swing.JFrame {
 
         dateField.setBackground(new java.awt.Color(35, 38, 53));
         dateField.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
+        dateField.setForeground(new java.awt.Color(255, 255, 255));
 
         montantField.setText("jTextField1");
         montantField.setBackground(new java.awt.Color(35, 38, 53));
@@ -272,6 +277,7 @@ public class DepenseActivity extends javax.swing.JFrame {
 
         commentaireField.setColumns(20);
         commentaireField.setRows(3);
+        commentaireField.setTabSize(6);
         commentaireField.setBackground(new java.awt.Color(35, 38, 53));
         commentaireField.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         commentaireField.setForeground(new java.awt.Color(255, 255, 255));
@@ -381,11 +387,11 @@ public class DepenseActivity extends javax.swing.JFrame {
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        modifierBTN.setBackground(new java.awt.Color(35, 38, 53));
-        modifierBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(92, 235, 181), 1, true));
+        validerBTN.setBackground(new java.awt.Color(35, 38, 53));
+        validerBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(92, 235, 181), 1, true));
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Modifier");
+        jLabel14.setText("Valider");
         jLabel14.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,14 +403,14 @@ public class DepenseActivity extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout modifierBTNLayout = new javax.swing.GroupLayout(modifierBTN);
-        modifierBTN.setLayout(modifierBTNLayout);
-        modifierBTNLayout.setHorizontalGroup(
-            modifierBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout validerBTNLayout = new javax.swing.GroupLayout(validerBTN);
+        validerBTN.setLayout(validerBTNLayout);
+        validerBTNLayout.setHorizontalGroup(
+            validerBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
         );
-        modifierBTNLayout.setVerticalGroup(
-            modifierBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        validerBTNLayout.setVerticalGroup(
+            validerBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -413,64 +419,49 @@ public class DepenseActivity extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(selectedDepense, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(141, 141, 141)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(montantField)
-                                    .addComponent(etatField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(libelleField)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(138, 138, 138)
-                                        .addComponent(dureeField))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(138, 138, 138)
-                                        .addComponent(villeDField))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(138, 138, 138)
-                                        .addComponent(villeAField))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(138, 138, 138)
-                                        .addComponent(dateAField))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(138, 138, 138)
-                                        .addComponent(dateRField))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(138, 138, 138)
-                                        .addComponent(distanceField))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(141, 141, 141)
-                                        .addComponent(dateField, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))))))
-                .addGap(215, 215, 215))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(388, 388, 388)
                 .addComponent(fermerBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(modifierBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(validerBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(102, 102, 102))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(selectedDepense, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(184, 184, 184)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(montantField)
+                            .addComponent(etatField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(libelleField)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dureeField)
+                            .addComponent(villeDField)
+                            .addComponent(villeAField)
+                            .addComponent(dateAField)
+                            .addComponent(dateRField)
+                            .addComponent(distanceField)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(dateField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGap(215, 215, 215))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -526,7 +517,7 @@ public class DepenseActivity extends javax.swing.JFrame {
                 .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(fermerBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(modifierBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(validerBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(102, 102, 102))
         );
 
@@ -587,21 +578,33 @@ public class DepenseActivity extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MouseReleased
 
     private void jLabel14MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MousePressed
-        modifierBTN.setBackground(new Color(92,235,181));
+        validerBTN.setBackground(new Color(92,235,181));
     }//GEN-LAST:event_jLabel14MousePressed
 
     private void jLabel14MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseReleased
-        modifierBTN.setBackground(new Color(35,38,53));
+        validerBTN.setBackground(new Color(35,38,53));
         
-        if(((Depense) selectedDepense.getSelectedItem()).getTypeDepense() == "Frais"){
-            try {
-                this.depenseConn = new DepenseDAO();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(DepenseActivity.class.getName()).log(Level.SEVERE, null, ex);
+        Depense tmpDepense = (Depense) selectedDepense.getSelectedItem();
+        
+            if( tmpDepense.isEtat().equals("Validé") ||  tmpDepense.isEtat().equals("Refusé")){
+                JOptionPane.showMessageDialog(this, "La depense a déjà été traitée");
+            }else{
+                try {
+                    DepenseDAO conn = new DepenseDAO();
+                    boolean callback = false;
+                    callback = conn.validateDepense(tmpDepense);
+                    if(callback){
+                        JOptionPane.showMessageDialog(this, "Depense validée");
+                    }else{
+                        JOptionPane.showConfirmDialog(this, "Une erreur est survenue");
+                    }
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(DepenseActivity.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DepenseActivity.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        }else{
-            
-        }
+        
     }//GEN-LAST:event_jLabel14MouseReleased
 
     private void selectedDepenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedDepenseActionPerformed
@@ -669,9 +672,9 @@ public class DepenseActivity extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField libelleField;
-    private javax.swing.JPanel modifierBTN;
     private javax.swing.JTextField montantField;
     private javax.swing.JComboBox<Object> selectedDepense;
+    private javax.swing.JPanel validerBTN;
     private javax.swing.JTextField villeAField;
     private javax.swing.JTextField villeDField;
     // End of variables declaration//GEN-END:variables

@@ -923,30 +923,33 @@ public class Comptable extends javax.swing.JFrame {
     private void jLabel6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseReleased
         ValidateBTN.setBackground(new Color(35,38,53));
         
-        NoteFrais tmpNote = (NoteFrais) notesFraisContainer.getSelectedValue();
         
-        if(tmpNote.getEtat().equals("Validé") || tmpNote.getEtat().equals("Refusé")){
-            JOptionPane.showMessageDialog(this, "Note de frais déjà traitée");
-        }else if(tmpNote.getEtat().equals("En Cours")){
-            if(notesFraisContainer.getSelectedValue() != null){
-               try {
-                   this.depenseConn = new DepenseDAO();
-                   boolean validate = depenseConn.validateDepensesAndNoteFrais(tmpNote.getId());
-                   if(validate == true){
-                       JOptionPane.showMessageDialog(this, "Note de frais validée avec toutes ses depenses");
-                       this.getSelectedUsersNotes();
-                   }else{
-                       JOptionPane.showMessageDialog(this, "Note de frais non validée, une erreur est survenue");
+        if(notesFraisContainer.getSelectedValue() != null){
+            NoteFrais tmpNote = (NoteFrais) notesFraisContainer.getSelectedValue();
+        
+            if(tmpNote.getEtat().equals("Validé") || tmpNote.getEtat().equals("Refusé")){
+                JOptionPane.showMessageDialog(this, "Note de frais déjà traitée");
+            }else if(tmpNote.getEtat().equals("En Cours")){
+                   try {
+                       this.depenseConn = new DepenseDAO();
+                       boolean validate = depenseConn.validateDepensesAndNoteFrais(tmpNote.getId());
+                       if(validate == true){
+                           JOptionPane.showMessageDialog(this, "Note de frais validée avec toutes ses depenses");
+                           this.getSelectedUsersNotes();
+                       }else{
+                           JOptionPane.showMessageDialog(this, "Note de frais non validée, une erreur est survenue");
+                       }
+                   } catch (ClassNotFoundException ex) {
+                       Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+                   } catch (SQLException ex) {
+                       Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
                    }
-               } catch (ClassNotFoundException ex) {
-                   Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
-               } catch (SQLException ex) {
-                   Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
-               }
-           }else{
-               JOptionPane.showMessageDialog(this, "Merci de selectionner une note de frais");
-           }   
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Merci de selectionner une note de frais");
         }
+        
+        
     }//GEN-LAST:event_jLabel6MouseReleased
 
     private void jLabel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MousePressed
@@ -960,26 +963,30 @@ public class Comptable extends javax.swing.JFrame {
     private void jLabel10MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseReleased
         refusBTN.setBackground(new Color(35,38,53));
         
-        NoteFrais tmpNote = (NoteFrais) notesFraisContainer.getSelectedValue();
+        if(notesFraisContainer.getSelectedValue() != null){
+            NoteFrais tmpNote = (NoteFrais) notesFraisContainer.getSelectedValue();
         
-        if(tmpNote.getEtat().equals("Validé") || tmpNote.getEtat().equals("Refusé")){
-            JOptionPane.showMessageDialog(this, "Note de frais déjà traitée");
-        }else if(tmpNote.getEtat().equals("En Cours")){
-            if(notesFraisContainer.getSelectedValue() != null){
-                try {
-                    this.depenseConn = new DepenseDAO();
-                    boolean refusal = this.depenseConn.refuseDepenseAndNoteFrais(tmpNote.getId());
-                    if(refusal){
-                        JOptionPane.showMessageDialog(this, "Note de frais traitée");
-                    }else{
-                        JOptionPane.showMessageDialog(this, "Une erreur est survenue");
+            if(tmpNote.getEtat().equals("Validé") || tmpNote.getEtat().equals("Refusé")){
+                JOptionPane.showMessageDialog(this, "Note de frais déjà traitée");
+            }else if(tmpNote.getEtat().equals("En Cours")){
+                if(notesFraisContainer.getSelectedValue() != null){
+                    try {
+                        this.depenseConn = new DepenseDAO();
+                        boolean refusal = this.depenseConn.refuseDepenseAndNoteFrais(tmpNote.getId());
+                        if(refusal){
+                            JOptionPane.showMessageDialog(this, "Note de frais traitée");
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Une erreur est survenue");
+                        }
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Merci de selectionner une note de frais.");
         }
     }//GEN-LAST:event_jLabel10MouseReleased
 

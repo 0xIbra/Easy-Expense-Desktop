@@ -27,6 +27,38 @@ public class DepenseDAO {
     }
     
     
+    public boolean validateDepense(Depense depense) throws SQLException{
+        Statement transmission;
+        
+        transmission = conn.createStatement();
+        String SQL = "UPDATE Depense SET etatValidation = 'Validé' WHERE idDepense = "+depense.getId();
+        int callBack = 0;
+        callBack = transmission.executeUpdate(SQL);
+        
+        if(callBack != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    
+    public boolean refuseDepense(Depense depense) throws SQLException{
+        Statement transmission;
+        
+        transmission = conn.createStatement();
+        String SQL = "UPDATE Depense SET etatValidation = 'Refusé' WHERE idDepense = "+depense.getId();
+        int callBack = 0;
+        callBack = transmission.executeUpdate(SQL);
+        
+        if(callBack != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    
     public ArrayList<Depense> getDepensesByID(int id) throws SQLException{
         Statement transmission;
         ResultSet result;
