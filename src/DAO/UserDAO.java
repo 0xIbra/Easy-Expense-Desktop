@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
-
 /**
  *
  * @author Vince
@@ -24,7 +22,7 @@ public class UserDAO {
     private static Connection laConnection;
     private static Statement transmission;
 
-    public UserDAO(){
+    public UserDAO() {
         laConnection = GestionConnection.getLaConnection();
     }
 
@@ -37,7 +35,7 @@ public class UserDAO {
             System.out.println(" ID : " + leResultat.getInt("id") + " Nom : " + leResultat.getString("nom") + " et le prenom est : " + leResultat.getString("prenom"));
         }
     }
-    
+
     public ArrayList<User> chargerCommerciaux() throws SQLException {
         ArrayList<User> listeCommerciaux = new ArrayList<User>();
         transmission = laConnection.createStatement();
@@ -45,17 +43,16 @@ public class UserDAO {
         String sql = "SELECT * FROM Utilisateur WHERE typeCompte='Commercial'";   //AFFICHAGE
         leResultat = transmission.executeQuery(sql);
         while (leResultat.next()) {
-            listeCommerciaux.add(new User(leResultat.getInt("idUtilisateur"),leResultat.getString("nomUtilisateur"), leResultat.getString("prenomUtilisateur")));
+            listeCommerciaux.add(new User(leResultat.getInt("idUtilisateur"), leResultat.getString("nomUtilisateur"), leResultat.getString("prenomUtilisateur")));
         }
         return listeCommerciaux;
     }
-    
-        public void afficherUser(User user) throws SQLException {
+
+    public void afficherUser(User user) throws SQLException {
         transmission = laConnection.createStatement();
         String nom = user.getLastName();
         String prenom = user.getFirstName();
 
-  
         ResultSet leResultat;
         int id = user.getId();
         String sql = "SELECT * FROM Utilisateur WHERE id = " + id + "";   //AFFICHAGE
@@ -65,24 +62,38 @@ public class UserDAO {
             System.out.println("Nom : " + leResultat.getString("nom") + " et le prenom est : " + leResultat.getString("prenom"));
         }
     }
-        
-        public User rechercherUser(User user) throws SQLException {
+
+    public User rechercherUser(User user) throws SQLException {
         boolean encore = false;
         transmission = laConnection.createStatement();
         String sql;
         ResultSet leResultat;
         User u = null;
-            System.out.println(user.getId());
+        System.out.println(user.getId());
         sql = "SELECT * FROM Utilisateur WHERE idUtilisateur=" + user.getId() + "";
-            System.out.println(sql);
+        System.out.println(sql);
         leResultat = transmission.executeQuery(sql);
         encore = leResultat.next();
         if (encore) {
-            u = (new User(leResultat.getString("mailUtilisateur"),leResultat.getString("mdpUtilisateur"),leResultat.getString("codePostalUtilisateur"),leResultat.getString("villeUtilisateur"),leResultat.getString("telUtilisateur"),leResultat.getString("adresseUtilisateur"),leResultat.getString("typeCompte"),leResultat.getString("nomUtilisateur"), leResultat.getString("prenomUtilisateur")));
+            u = (new User(leResultat.getString("mailUtilisateur"), leResultat.getString("mdpUtilisateur"), leResultat.getString("codePostalUtilisateur"), leResultat.getString("villeUtilisateur"), leResultat.getString("telUtilisateur"), leResultat.getString("adresseUtilisateur"), leResultat.getString("typeCompte"), leResultat.getString("nomUtilisateur"), leResultat.getString("prenomUtilisateur")));
 
         }
         return u;
-       
+
+    }
+
+    public void updateUser(User user) throws SQLException {
+        int id = user.getId();
+        //String nom = user.getLastName();
+        //String prenom = user.getFirstName();
+        String mail = user.getEmail();
+        String tel = user.getTelephone();
+        String ville = user.getVille();
+        String cp = user.getCode_postal();
+        //String type = user.getAccountType();
+        String sql = "UPDATE Utilisateur SET   mailUtilisateur = '" + mail + "', telUtilisateur = '" + tel + "', villeUtilisateur = '" + ville + "', codePostalUtilisateur = '" + cp + "' WHERE idUtilisateur = " + id + "";
+        System.out.println(sql);
+        transmission.executeUpdate(sql);           //UTILSATION DE LA CLASSE STATEMENT (executeUpdate)
     }
 
 }
