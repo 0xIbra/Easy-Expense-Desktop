@@ -17,6 +17,7 @@ public class User {
     private String code_postal;
     private String ville;
     private String telephone;
+    private String adresse;
     private String accountType;
     private String LastName;
     private String FirstName;
@@ -35,18 +36,31 @@ public class User {
         this.idEntreprise = idEnterprise;
     }
     
-    public User(int id, String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom, int idEnterprise){
+    public User(int id, String email, String password, String codepostale, String ville, String tel, String adresse, String accType, String nom, String prenom, int idEnterprise){
         this.id = id;
         this.email = email;
         this.password = password;
         this.code_postal = codepostale;
         this.ville = ville;
         this.telephone = tel;
+        this.adresse = adresse;
         this.accountType = accType;
         this.LastName = nom;
         this.FirstName = prenom;
         this.idEntreprise = idEnterprise;
     }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+    
+    
+    
+    
     
     
     public String toString(){
