@@ -1,32 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+﻿
 package IHM;
 
-<<<<<<< HEAD:src/IHM/Comptable.java
 import DAO.UserDAO;
 import Metier.User;
 import java.awt.Color;
 import static java.lang.String.valueOf;
-=======
+
 import DAO.NoteFraisDAO;
 import DAO.UserDAO;
+import IHM.DepenseActivity;
+import IHM.LoginActivity;
 import Metier.NoteFrais;
 import Metier.User;
 import java.awt.Color;
 import java.awt.Component;
->>>>>>> ibragim:src/graphic/Comptable.java
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-<<<<<<< HEAD:src/IHM/Comptable.java
-=======
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
->>>>>>> ibragim:src/graphic/Comptable.java
+
 
 /**
  *
@@ -35,7 +29,7 @@ import javax.swing.JList;
 public class Comptable extends javax.swing.JFrame {
 
     private User currentComptable;
-<<<<<<< HEAD:src/IHM/Comptable.java
+    
     UserDAO userDAO = new UserDAO();
 
     public Comptable() {
@@ -45,7 +39,7 @@ public class Comptable extends javax.swing.JFrame {
         this.setResizable(false);
 
     }
-=======
+    
     
     private NoteFraisDAO conn;
     private UserDAO userConn;
@@ -55,17 +49,13 @@ public class Comptable extends javax.swing.JFrame {
     
     
     private DefaultListModel dm = new DefaultListModel();
->>>>>>> ibragim:src/graphic/Comptable.java
+    
 
     /**
      * Creates new form Comptable
      */
-<<<<<<< HEAD:src/IHM/Comptable.java
     public Comptable(User currentComptable) throws SQLException {
-=======
-    public Comptable(User currentCom) throws ClassNotFoundException {
->>>>>>> ibragim:src/graphic/Comptable.java
-        initComponents();
+     initComponents();
         this.currentComptable = currentComptable;
         this.setSize(870, 550);
         this.setTitle("Comptable - " + currentComptable.getFirstName());
@@ -73,14 +63,14 @@ public class Comptable extends javax.swing.JFrame {
         this.setResizable(false);
         this.setVisible(true);
         this.prepareWelcome();
-<<<<<<< HEAD:src/IHM/Comptable.java
+        
         AccountActivity.setVisible(true);
         GestionCommercialActivity.setVisible(false);
         ListeNoteFraisActivity.setVisible(false);
         listeCommercialActivity.setVisible(false);
         getAccountInfo();
         gestionCommerciaux();
-=======
+        
         initAccountActivity();
         try {
             this.getCurrentNotesFrais();
@@ -88,9 +78,12 @@ public class Comptable extends javax.swing.JFrame {
             Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
-        }
->>>>>>> ibragim:src/graphic/Comptable.java
+        }   
     }
+    
+        
+        
+    
 
     public void gestionCommerciaux() throws SQLException {
         ArrayList<User> listeUser = userDAO.chargerCommerciaux();
@@ -98,7 +91,7 @@ public class Comptable extends javax.swing.JFrame {
             listeCommerciaux.addItem(user);
         }
     }
-<<<<<<< HEAD:src/IHM/Comptable.java
+
 
     public void getAccountInfo() {
         String id = valueOf(this.currentComptable.getId());
@@ -116,7 +109,7 @@ public class Comptable extends javax.swing.JFrame {
         String currentUID = String.valueOf(this.currentComptable.getId());
         IDField.setText(currentUID);
 
-=======
+    }
     
     
     public void initAccountActivity(){
@@ -124,13 +117,6 @@ public class Comptable extends javax.swing.JFrame {
         this.GestionCommercialActivity.setVisible(false);
         this.ListeNoteFraisActivity.setVisible(false);
         this.listeCommercialActivity.setVisible(false);
-    }
-    
-    
-    
-    public void initCurrentUser(){
-        String currentUID = String.valueOf(this.currentComptable.getId());
-        IDField.setText(currentUID);
     }
     
     
@@ -143,7 +129,7 @@ public class Comptable extends javax.swing.JFrame {
         for (User selectedUser : selectedUsers) {
             this.currentCommercialBox.addItem(selectedUser);
         }
->>>>>>> ibragim:src/graphic/Comptable.java
+
     }
 
     public void initCurrentComptable() {
@@ -199,7 +185,7 @@ public class Comptable extends javax.swing.JFrame {
         listeCommercialLabel = new javax.swing.JLabel();
         mainContent = new javax.swing.JPanel();
         GestionCommercialActivity = new javax.swing.JPanel();
-<<<<<<< HEAD:src/IHM/Comptable.java
+
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -220,8 +206,7 @@ public class Comptable extends javax.swing.JFrame {
         cpField1 = new javax.swing.JTextField();
         typeField1 = new javax.swing.JLabel();
         ListeNoteFraisActivity = new javax.swing.JPanel();
-=======
->>>>>>> ibragim:src/graphic/Comptable.java
+
         listeCommercialActivity = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -580,7 +565,7 @@ public class Comptable extends javax.swing.JFrame {
         GestionCommercialActivity.setLayout(GestionCommercialActivityLayout);
         GestionCommercialActivityLayout.setHorizontalGroup(
             GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD:src/IHM/Comptable.java
+
             .addGroup(GestionCommercialActivityLayout.createSequentialGroup()
                 .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(GestionCommercialActivityLayout.createSequentialGroup()
@@ -659,7 +644,6 @@ public class Comptable extends javax.swing.JFrame {
         ListeNoteFraisActivity.setBackground(new java.awt.Color(35, 38, 53));
         ListeNoteFraisActivity.setForeground(new java.awt.Color(190, 190, 190));
 
-        javax.swing.GroupLayout ListeNoteFraisActivityLayout = new javax.swing.GroupLayout(ListeNoteFraisActivity);
         ListeNoteFraisActivity.setLayout(ListeNoteFraisActivityLayout);
         ListeNoteFraisActivityLayout.setHorizontalGroup(
             ListeNoteFraisActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -668,13 +652,12 @@ public class Comptable extends javax.swing.JFrame {
         ListeNoteFraisActivityLayout.setVerticalGroup(
             ListeNoteFraisActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 535, Short.MAX_VALUE)
-=======
             .addGap(0, 688, Short.MAX_VALUE)
         );
         GestionCommercialActivityLayout.setVerticalGroup(
             GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 529, Short.MAX_VALUE)
->>>>>>> ibragim:src/graphic/Comptable.java
+
         );
 
         listeCommercialActivity.setBackground(new java.awt.Color(35, 38, 53));
@@ -1120,7 +1103,7 @@ public class Comptable extends javax.swing.JFrame {
         this.listeCommercialActivity.setVisible(false);
     }//GEN-LAST:event_listeNoteFraisLabelMouseReleased
 
-<<<<<<< HEAD:src/IHM/Comptable.java
+
     private void listeCommerciauxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listeCommerciauxActionPerformed
         User user = (User) listeCommerciaux.getSelectedItem();
         System.out.println(user);
@@ -1163,7 +1146,7 @@ public class Comptable extends javax.swing.JFrame {
 
         User currentUser = (User) listeCommerciaux.getSelectedItem();
 
-        User user = new User(currentUser.getId(), mail, currentUser.getPassword(), cp, ville, tel, currentUser.getAccountType(), currentUser.getLastName(), currentUser.getFirstName());
+        User user = new User(currentUser.getId(), mail, currentUser.getPassword(), cp, ville, tel, null, currentUser.getAccountType(), currentUser.getLastName(), currentUser.getFirstName(), currentUser.getIdEntreprise());
         System.out.println(user.toString2());
         try {
             userDAO.updateUser(user);
@@ -1181,11 +1164,11 @@ public class Comptable extends javax.swing.JFrame {
         this.modifierBTN.setBackground(new Color(92, 235, 181));
     }//GEN-LAST:event_modifierBTNMousePressed
 
-=======
+
     private void printLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printLabelMousePressed
         printBTN.setBackground(new Color(92,235,181));
     }//GEN-LAST:event_printLabelMousePressed
->>>>>>> ibragim:src/graphic/Comptable.java
+
 
     private void printLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printLabelMouseReleased
         printBTN.setBackground(new Color(35,38,53));
@@ -1268,22 +1251,15 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JPanel ListeNoteFraisActivity;
     private javax.swing.JPanel ValidateBTN;
     private javax.swing.JLabel cpField;
-<<<<<<< HEAD
-<<<<<<< HEAD:src/IHM/Comptable.java
+
     private javax.swing.JLabel cpField1;
     private javax.swing.JLabel emailField;
     private javax.swing.JLabel emailField1;
     private javax.swing.JButton jButton1;
-=======
+
     private javax.swing.JComboBox<Object> currentCommercialBox;
-    private javax.swing.JLabel emailField;
     private javax.swing.JPanel getDetailsBTN;
->>>>>>> ibragim:src/graphic/Comptable.java
-=======
-    private javax.swing.JTextField cpField1;
-    private javax.swing.JLabel emailField;
-    private javax.swing.JTextField emailField1;
->>>>>>> Vincent
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1298,10 +1274,9 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-<<<<<<< HEAD:src/IHM/Comptable.java
-=======
+
     private javax.swing.JLabel jLabel5;
->>>>>>> ibragim:src/graphic/Comptable.java
+
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1321,20 +1296,16 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel myAccountBTN;
     private javax.swing.JPanel myaccBTN;
     private javax.swing.JLabel nomField;
-<<<<<<< HEAD:src/IHM/Comptable.java
+
     private javax.swing.JLabel nomField1;
     private javax.swing.JLabel prenomField;
     private javax.swing.JLabel prenomField1;
-<<<<<<< HEAD
-=======
+
     private javax.swing.JList<Object> notesFraisContainer;
-    private javax.swing.JLabel prenomField;
     private javax.swing.JPanel printBTN;
     private javax.swing.JLabel printLabel;
->>>>>>> ibragim:src/graphic/Comptable.java
-=======
     private javax.swing.JLabel processField1;
->>>>>>> Vincent
+
     private javax.swing.JPanel sidepanel;
     private javax.swing.JPanel signoutBTN;
     private javax.swing.JLabel telField;
@@ -1345,4 +1316,5 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JTextField villeField1;
     private javax.swing.JLabel welcomeTXT;
     // End of variables declaration//GEN-END:variables
+    }
 }

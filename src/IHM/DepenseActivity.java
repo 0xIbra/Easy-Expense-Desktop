@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package graphic;
+package IHM;
 
 import DAO.DepenseDAO;
 import Metier.Depense;
@@ -165,7 +165,6 @@ public class DepenseActivity extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(952, 543));
-        setPreferredSize(new java.awt.Dimension(952, 543));
         setSize(new java.awt.Dimension(952, 543));
 
         jPanel1.setBackground(new java.awt.Color(35, 38, 53));
@@ -248,11 +247,11 @@ public class DepenseActivity extends javax.swing.JFrame {
             }
         });
 
-        commentaireField.setBackground(new java.awt.Color(35, 38, 53));
         commentaireField.setColumns(20);
+        commentaireField.setRows(3);
+        commentaireField.setBackground(new java.awt.Color(35, 38, 53));
         commentaireField.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         commentaireField.setForeground(new java.awt.Color(255, 255, 255));
-        commentaireField.setRows(3);
         jScrollPane1.setViewportView(commentaireField);
 
         dureeField.setText("jTextField1");

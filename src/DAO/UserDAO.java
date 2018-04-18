@@ -5,25 +5,16 @@
  */
 package DAO;
 
-<<<<<<< HEAD
 import Connexion.GestionConnection;
 import Metier.User;
 import java.sql.Connection;
-=======
 import Metier.User;
-import com.mysql.jdbc.Connection;
->>>>>>> ibragim
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
-=======
->>>>>>> Vincent
 /**
  *
  * @author Vince
@@ -86,7 +77,7 @@ public class UserDAO {
         leResultat = transmission.executeQuery(sql);
         encore = leResultat.next();
         if (encore) {
-            u = (new User(leResultat.getString("mailUtilisateur"), leResultat.getString("mdpUtilisateur"), leResultat.getString("codePostalUtilisateur"), leResultat.getString("villeUtilisateur"), leResultat.getString("telUtilisateur"), leResultat.getString("adresseUtilisateur"), leResultat.getString("typeCompte"), leResultat.getString("nomUtilisateur"), leResultat.getString("prenomUtilisateur")));
+            u = (new User(leResultat.getInt("idUtilisateur"), leResultat.getString("mailUtilisateur"), leResultat.getString("mdpUtilisateur"), leResultat.getString("codePostalUtilisateur"), leResultat.getString("villeUtilisateur"), leResultat.getString("telUtilisateur"), leResultat.getString("adresseUtilisateur"), leResultat.getString("typeCompte"), leResultat.getString("nomUtilisateur"), leResultat.getString("prenomUtilisateur"), leResultat.getInt("idEntreprise")));
 
         }
         return u;
@@ -106,18 +97,8 @@ public class UserDAO {
         System.out.println(sql);
         transmission.executeUpdate(sql);           //UTILSATION DE LA CLASSE STATEMENT (executeUpdate)
     }
-
-=======
-/**
- *
- * @author ibragim.abubakarov
- */
-public class UserDAO {
-    private Connection conn;
     
-    public UserDAO() throws ClassNotFoundException{
-        this.conn = ConnexionDB.getConnexion();
-    }
+    
     
     
     public ArrayList<User> getUsersFromEnterprise(User comptable) throws SQLException{
@@ -126,7 +107,7 @@ public class UserDAO {
         
         ArrayList<User> tmpHolder = new ArrayList<User>();
         
-        transmission = conn.createStatement();
+        transmission = laConnection.createStatement();
         String SQL = "SELECT * FROM Utilisateur WHERE idEntreprise ="+comptable.getIdEntreprise();
         
         
@@ -135,12 +116,13 @@ public class UserDAO {
         while(result.next()){
             tmpHolder.add(new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"),
                     result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"),
-                    result.getString("telUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"),
+                    result.getString("telUtilisateur"), result.getString("adresseUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"),
                     result.getString("prenomUtilisateur"), result.getInt("idEntreprise")));
         }
         
         return tmpHolder;
     }
-    
->>>>>>> ibragim
+
+
+
 }

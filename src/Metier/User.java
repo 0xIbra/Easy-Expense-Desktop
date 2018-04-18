@@ -24,11 +24,11 @@ public class User {
     private int idEntreprise;
     
     
-<<<<<<< HEAD
-    public User(String email, String password, String codepostale, String ville, String tel,String adresse, String accType, String nom, String prenom){
-=======
+
+    //public User(String email, String password, String codepostale, String ville, String tel,String adresse, String accType, String nom, String prenom){
+
     public User(String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom, int idEnterprise){
->>>>>>> ibragim
+
         this.email = email;
         this.password = password;
         this.code_postal = codepostale;
@@ -41,14 +41,14 @@ public class User {
         this.idEntreprise = idEnterprise;
     }
     
-    public User(int id, String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom, int idEnterprise){
+    public User(int id, String email, String password, String codepostale, String ville, String tel, String adresse, String accType, String nom, String prenom, int idEnterprise){
         this.id = id;
         this.email = email;
         this.password = password;
         this.code_postal = codepostale;
         this.ville = ville;
         this.telephone = tel;
-
+        this.adresse = adresse;
         this.accountType = accType;
         this.LastName = nom;
         this.FirstName = prenom;
@@ -156,21 +156,13 @@ public class User {
 
     public void setFirstName(String FirstName) {
         this.FirstName = FirstName;
-<<<<<<< HEAD
+
     }
 
-    @Override
-    public String toString() {
-        return  LastName + " " + FirstName;
-    }
     
     public String toString2() {
         return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", code_postal=" + code_postal + ", ville=" + ville + ", telephone=" + telephone + ", adresse=" + adresse + ", accountType=" + accountType + ", LastName=" + LastName + ", FirstName=" + FirstName + '}';
     }
     
-     
-=======
-    }    
-    
->>>>>>> ibragim
+
 }

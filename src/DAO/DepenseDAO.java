@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Connexion.GestionConnection;
 import Metier.Depense;
 import Metier.Frais;
 import Metier.Trajet;
@@ -22,7 +23,7 @@ public class DepenseDAO {
     private Connection conn;
     
     public DepenseDAO() throws ClassNotFoundException{
-        this.conn = ConnexionDB.getConnexion();
+        this.conn = GestionConnection.getLaConnection();
     }
     
     

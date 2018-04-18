@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import Connexion.GestionConnection;
 
 /**
  *
@@ -21,7 +22,7 @@ public class NoteFraisDAO {
     private Connection conn;
     
     public NoteFraisDAO() throws ClassNotFoundException{
-        this.conn = ConnexionDB.getConnexion();
+        this.conn = GestionConnection.getLaConnection();
     }
     
     

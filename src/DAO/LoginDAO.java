@@ -5,8 +5,9 @@
  */
 package DAO;
 
+import Connexion.GestionConnection;
 import Metier.User;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,7 +20,7 @@ public class LoginDAO {
     private Connection conn;
     
     public LoginDAO() throws ClassNotFoundException{
-        this.conn = ConnexionDB.getConnexion();
+        this.conn = GestionConnection.getLaConnection();
     }
     
     public User authentificateCommercial(String userMail, String userMDP) throws SQLException{
@@ -33,7 +34,7 @@ public class LoginDAO {
         User tmpUser = null;
         
         while(result.next()){
-            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"), result.getInt("idEntreprise"));
+            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("adresseUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"), result.getInt("idEntreprise"));
             
         }
         
@@ -52,7 +53,7 @@ public class LoginDAO {
         User tmpUser = null;
         
          while(result.next()){
-            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"), result.getInt("idEntreprise"));
+            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("adresseUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"), result.getInt("idEntreprise"));
             
         }
         
