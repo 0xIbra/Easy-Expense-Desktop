@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Metier.NoteFrais;
 import Metier.User;
 import com.mysql.jdbc.Connection;
 import java.sql.ResultSet;
@@ -113,6 +114,30 @@ public class UserDAO {
     }
     
     
-    
+    public void getCommercialByMonth(User comptable, int mois) throws SQLException{
+        Statement transmission;
+        ResultSet result;
+        
+        transmission = laConnection.createStatement();
+        String SQL = "SELECT * FROM NoteDeFrais, Utilisateur WHERE idEntreprise = "+comptable.getIdEntreprise()+" AND NoteDeFrais.idUtilisateur = Utilisateur.idUtilisateur AND dateFrais LIKE '2018-0"+mois+"%'";
+        
+        result = transmission.executeQuery(SQL);
+        
+        ArrayList<User> commerciaux = new ArrayList<User>();
+        ArrayList<NoteFrais> notesFrais = new ArrayList<NoteFrais>();
+        
+        while(result.next()){
+            commerciaux.add(new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"),
+                                    result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"),
+                                    result.getString("telUtilisateur"), result.getString("adresseUtilisateur"), result.getString("typeCompte"),
+                                    result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"), result.getInt("idEntreprise")));
+            
+            
+            notesFrais.add(new NoteFrais(result.getInt("codeFrais"), result.getString("libelleNote"), result.getString("dateFrais"), result.getString("villeFrais"), 
+                                        result.getString("dateSoumission"), result.getString("commentaireFrais"), result.getString("etat")));
+        }
+        
+        
+    }
     
 }

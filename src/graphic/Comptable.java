@@ -57,6 +57,7 @@ public class Comptable extends javax.swing.JFrame {
             Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.gestionCommerciaux();
+        this.listeMois();
     }
     
     public Comptable(){
@@ -129,6 +130,24 @@ public class Comptable extends javax.swing.JFrame {
     
     
     
+    // LISTE DES NOTES DE FRAIS
+    
+    
+    
+    public void listeMois(){
+        String[] months = {"Mois", "Janvier", 
+                                        "Février", "Mars", 
+                                        "Avril", "Mai", "Juin", 
+                                        "Juillet", "Auôt", "Septembre", 
+                                        "Octobre", "Novembre", "Décembre"};
+        
+        for (String month : months) {
+            mois.addItem(month);
+        }
+    }
+    
+    // LISTE DES NOTES DE FRAIS
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -190,6 +209,8 @@ public class Comptable extends javax.swing.JFrame {
         refusBTN = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         ListeNoteFraisActivity = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        mois = new javax.swing.JComboBox<>();
         AccountActivity = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         IDField = new javax.swing.JLabel();
@@ -578,7 +599,7 @@ public class Comptable extends javax.swing.JFrame {
                                 .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(listeCommerciaux, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(modifierBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         GestionCommercialActivityLayout.setVerticalGroup(
             GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -824,15 +845,38 @@ public class Comptable extends javax.swing.JFrame {
         ListeNoteFraisActivity.setBackground(new java.awt.Color(35, 38, 53));
         ListeNoteFraisActivity.setForeground(new java.awt.Color(190, 190, 190));
 
+        jLabel23.setFont(new java.awt.Font("Montserrat", 0, 24)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Liste des notes de frais");
+
+        mois.setBackground(new java.awt.Color(35, 38, 53));
+        mois.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        mois.setForeground(new java.awt.Color(255, 255, 255));
+        mois.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moisActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ListeNoteFraisActivityLayout = new javax.swing.GroupLayout(ListeNoteFraisActivity);
         ListeNoteFraisActivity.setLayout(ListeNoteFraisActivityLayout);
         ListeNoteFraisActivityLayout.setHorizontalGroup(
             ListeNoteFraisActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 694, Short.MAX_VALUE)
+            .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListeNoteFraisActivityLayout.createSequentialGroup()
+                .addContainerGap(418, Short.MAX_VALUE)
+                .addComponent(mois, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(129, 129, 129))
         );
         ListeNoteFraisActivityLayout.setVerticalGroup(
             ListeNoteFraisActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
+            .addGroup(ListeNoteFraisActivityLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel23)
+                .addGap(18, 18, 18)
+                .addComponent(mois, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(444, Short.MAX_VALUE))
         );
 
         AccountActivity.setBackground(new java.awt.Color(35, 38, 53));
@@ -1270,6 +1314,10 @@ public class Comptable extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_modifierLABELMouseReleased
 
+    private void moisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moisActionPerformed
+        
+    }//GEN-LAST:event_moisActionPerformed
+
     
     public void getSelectedUsersNotes() throws ClassNotFoundException{
         this.conn = new NoteFraisDAO();
@@ -1329,6 +1377,7 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1348,6 +1397,7 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JPanel mainContent;
     private javax.swing.JPanel modifierBTN;
     private javax.swing.JLabel modifierLABEL;
+    private javax.swing.JComboBox<String> mois;
     private javax.swing.JLabel myAccountBTN;
     private javax.swing.JPanel myaccBTN;
     private javax.swing.JLabel nomField;
