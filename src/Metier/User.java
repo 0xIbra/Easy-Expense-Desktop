@@ -164,6 +164,10 @@ public class User {
         return  LastName + " " + FirstName;
     }
     
+    public String toString2() {
+        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", code_postal=" + code_postal + ", ville=" + ville + ", telephone=" + telephone + ", adresse=" + adresse + ", accountType=" + accountType + ", LastName=" + LastName + ", FirstName=" + FirstName + '}';
+    }
+    
      
 =======
     }    

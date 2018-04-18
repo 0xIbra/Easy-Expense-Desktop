@@ -207,16 +207,18 @@ public class Comptable extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        typeField1 = new javax.swing.JLabel();
-        cpField1 = new javax.swing.JLabel();
-        villeField1 = new javax.swing.JLabel();
-        emailField1 = new javax.swing.JLabel();
-        telField1 = new javax.swing.JLabel();
+        processField1 = new javax.swing.JLabel();
         prenomField1 = new javax.swing.JLabel();
         nomField1 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         listeCommerciaux = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        modifierBTN = new javax.swing.JPanel();
+        modifierLABEL = new javax.swing.JLabel();
+        telField1 = new javax.swing.JTextField();
+        emailField1 = new javax.swing.JTextField();
+        villeField1 = new javax.swing.JTextField();
+        cpField1 = new javax.swing.JTextField();
+        typeField1 = new javax.swing.JLabel();
         ListeNoteFraisActivity = new javax.swing.JPanel();
 =======
 >>>>>>> ibragim:src/graphic/Comptable.java
@@ -493,25 +495,8 @@ public class Comptable extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(190, 190, 190));
         jLabel18.setText("Type Compte :");
 
-        typeField1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        typeField1.setForeground(new java.awt.Color(190, 190, 190));
-        typeField1.setText("TYPE");
-
-        cpField1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        cpField1.setForeground(new java.awt.Color(190, 190, 190));
-        cpField1.setText("CODEPOSTAL");
-
-        villeField1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        villeField1.setForeground(new java.awt.Color(190, 190, 190));
-        villeField1.setText("VILLE");
-
-        emailField1.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
-        emailField1.setForeground(new java.awt.Color(190, 190, 190));
-        emailField1.setText("EMAIL");
-
-        telField1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        telField1.setForeground(new java.awt.Color(190, 190, 190));
-        telField1.setText("TELEPHONE");
+        processField1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        processField1.setForeground(new java.awt.Color(190, 190, 190));
 
         prenomField1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         prenomField1.setForeground(new java.awt.Color(190, 190, 190));
@@ -525,20 +510,71 @@ public class Comptable extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(190, 190, 190));
         jLabel19.setText("Gestion des commerciaux");
 
+        listeCommerciaux.setBackground(new java.awt.Color(35, 38, 53));
         listeCommerciaux.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        listeCommerciaux.setForeground(new java.awt.Color(190, 190, 190));
         listeCommerciaux.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listeCommerciauxActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jButton1.setText("Modifier");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        modifierBTN.setBackground(new java.awt.Color(35, 38, 53));
+        modifierBTN.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(92, 235, 181), 1, true));
+        modifierBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                modifierBTNMousePressed(evt);
             }
         });
+
+        modifierLABEL.setBackground(new java.awt.Color(35, 38, 53));
+        modifierLABEL.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        modifierLABEL.setForeground(new java.awt.Color(255, 255, 255));
+        modifierLABEL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        modifierLABEL.setText("Modifier");
+        modifierLABEL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                modifierLABELMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                modifierLABELMouseReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout modifierBTNLayout = new javax.swing.GroupLayout(modifierBTN);
+        modifierBTN.setLayout(modifierBTNLayout);
+        modifierBTNLayout.setHorizontalGroup(
+            modifierBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(modifierLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+        );
+        modifierBTNLayout.setVerticalGroup(
+            modifierBTNLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(modifierLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        telField1.setBackground(new java.awt.Color(35, 38, 53));
+        telField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        telField1.setForeground(new java.awt.Color(190, 190, 190));
+        telField1.setText("TELEPHONE");
+
+        emailField1.setBackground(new java.awt.Color(35, 38, 53));
+        emailField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        emailField1.setForeground(new java.awt.Color(190, 190, 190));
+        emailField1.setText("E-MAIL");
+
+        villeField1.setBackground(new java.awt.Color(35, 38, 53));
+        villeField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        villeField1.setForeground(new java.awt.Color(190, 190, 190));
+        villeField1.setText("VILLE");
+
+        cpField1.setBackground(new java.awt.Color(35, 38, 53));
+        cpField1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        cpField1.setForeground(new java.awt.Color(190, 190, 190));
+        cpField1.setText("CODE POSTAL");
+
+        typeField1.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        typeField1.setForeground(new java.awt.Color(190, 190, 190));
+        typeField1.setText("TYPE");
 
         javax.swing.GroupLayout GestionCommercialActivityLayout = new javax.swing.GroupLayout(GestionCommercialActivity);
         GestionCommercialActivity.setLayout(GestionCommercialActivityLayout);
@@ -565,18 +601,18 @@ public class Comptable extends javax.swing.JFrame {
                                 .addGap(50, 50, 50)
                                 .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(prenomField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(telField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(emailField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(villeField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cpField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(typeField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                    .addComponent(nomField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(listeCommerciaux, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(236, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GestionCommercialActivityLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(300, 300, 300))
+                                    .addComponent(nomField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(telField1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(emailField1)
+                                    .addComponent(villeField1)
+                                    .addComponent(cpField1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                    .addComponent(typeField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))
+                            .addComponent(listeCommerciaux, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(GestionCommercialActivityLayout.createSequentialGroup()
+                                .addComponent(modifierBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(processField1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(391, Short.MAX_VALUE))
         );
         GestionCommercialActivityLayout.setVerticalGroup(
             GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -585,7 +621,7 @@ public class Comptable extends javax.swing.JFrame {
                 .addComponent(jLabel19)
                 .addGap(34, 34, 34)
                 .addComponent(listeCommerciaux, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(nomField1))
@@ -596,25 +632,27 @@ public class Comptable extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(telField1))
+                    .addComponent(telField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(emailField1))
+                    .addComponent(emailField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(villeField1))
+                    .addComponent(villeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(cpField1))
+                    .addComponent(cpField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(typeField1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(GestionCommercialActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(modifierBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(processField1))
                 .addGap(36, 36, 36))
         );
 
@@ -1085,20 +1123,63 @@ public class Comptable extends javax.swing.JFrame {
 <<<<<<< HEAD:src/IHM/Comptable.java
     private void listeCommerciauxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listeCommerciauxActionPerformed
         User user = (User) listeCommerciaux.getSelectedItem();
-            System.out.println(user);
+        System.out.println(user);
         try {
             user = userDAO.rechercherUser(user);
             nomField1.setText(user.getLastName());
             prenomField1.setText(user.getFirstName());
             telField1.setText(user.getTelephone());
+            emailField1.setText(user.getEmail());
+            villeField1.setText(user.getVille());
+            cpField1.setText(user.getCode_postal());
+            typeField1.setText(user.getAccountType());
         } catch (SQLException ex) {
             Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_listeCommerciauxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void modifierLABELMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifierLABELMousePressed
+        this.modifierBTN.setBackground(new Color(92, 235, 181));
+    }//GEN-LAST:event_modifierLABELMousePressed
+
+    private void modifierLABELMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifierLABELMouseReleased
+        this.modifierBTN.setBackground(new Color(35, 38, 53));
+
+        String tel, mail, ville, cp;
+        tel = telField1.getText();
+        mail = emailField1.getText();
+        ville = villeField1.getText();
+        cp = cpField1.getText();
+
+        try {
+            User currentUser = (User) listeCommerciaux.getSelectedItem();
+            System.out.println(currentUser.getId());
+
+            currentUser = userDAO.rechercherUser(currentUser);
+            System.out.println(currentUser);
+        } catch (SQLException ex) {
+            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        User currentUser = (User) listeCommerciaux.getSelectedItem();
+
+        User user = new User(currentUser.getId(), mail, currentUser.getPassword(), cp, ville, tel, currentUser.getAccountType(), currentUser.getLastName(), currentUser.getFirstName());
+        System.out.println(user.toString2());
+        try {
+            userDAO.updateUser(user);
+            processField1.setText("La modification est effectuée");
+        } catch (SQLException ex) {
+            Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+
+
+    }//GEN-LAST:event_modifierLABELMouseReleased
+
+    private void modifierBTNMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifierBTNMousePressed
+        this.modifierBTN.setBackground(new Color(92, 235, 181));
+    }//GEN-LAST:event_modifierBTNMousePressed
 
 =======
     private void printLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printLabelMousePressed
@@ -1187,6 +1268,7 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JPanel ListeNoteFraisActivity;
     private javax.swing.JPanel ValidateBTN;
     private javax.swing.JLabel cpField;
+<<<<<<< HEAD
 <<<<<<< HEAD:src/IHM/Comptable.java
     private javax.swing.JLabel cpField1;
     private javax.swing.JLabel emailField;
@@ -1197,6 +1279,11 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel emailField;
     private javax.swing.JPanel getDetailsBTN;
 >>>>>>> ibragim:src/graphic/Comptable.java
+=======
+    private javax.swing.JTextField cpField1;
+    private javax.swing.JLabel emailField;
+    private javax.swing.JTextField emailField1;
+>>>>>>> Vincent
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1229,6 +1316,8 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JPanel listeNoteFraisBTN;
     private javax.swing.JLabel listeNoteFraisLabel;
     private javax.swing.JPanel mainContent;
+    private javax.swing.JPanel modifierBTN;
+    private javax.swing.JLabel modifierLABEL;
     private javax.swing.JLabel myAccountBTN;
     private javax.swing.JPanel myaccBTN;
     private javax.swing.JLabel nomField;
@@ -1236,20 +1325,24 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel nomField1;
     private javax.swing.JLabel prenomField;
     private javax.swing.JLabel prenomField1;
+<<<<<<< HEAD
 =======
     private javax.swing.JList<Object> notesFraisContainer;
     private javax.swing.JLabel prenomField;
     private javax.swing.JPanel printBTN;
     private javax.swing.JLabel printLabel;
 >>>>>>> ibragim:src/graphic/Comptable.java
+=======
+    private javax.swing.JLabel processField1;
+>>>>>>> Vincent
     private javax.swing.JPanel sidepanel;
     private javax.swing.JPanel signoutBTN;
     private javax.swing.JLabel telField;
-    private javax.swing.JLabel telField1;
+    private javax.swing.JTextField telField1;
     private javax.swing.JLabel typeField;
     private javax.swing.JLabel typeField1;
     private javax.swing.JLabel villeField;
-    private javax.swing.JLabel villeField1;
+    private javax.swing.JTextField villeField1;
     private javax.swing.JLabel welcomeTXT;
     // End of variables declaration//GEN-END:variables
 }
