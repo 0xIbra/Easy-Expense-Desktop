@@ -6,6 +6,7 @@
 package Metier;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
@@ -23,7 +24,7 @@ public class PDF {
     
     public PDF(String title){
         this.title = title;
-        doc = new Document();
+        doc = new Document(PageSize.A4);
     }
     
     public void initTitle() throws FileNotFoundException{
