@@ -55,6 +55,7 @@ public class User {
         this.idEntreprise = idEnterprise;
     }
 
+<<<<<<< HEAD
     public User(String LastName, String FirstName) {
         this.LastName = LastName;
         this.FirstName = FirstName;
@@ -71,6 +72,19 @@ public class User {
     }
     
     
+=======
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+    
+    
+    
+    
+>>>>>>> ibragim
     
     
     public String toString(){
