@@ -5,11 +5,14 @@
         <group>
             <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/LoginDAO.java</file>
             <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/Metier/Depense.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/Metier/NoteFrais.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/graphic/DepenseActivity.java</file>
             <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/NoteFraisDAO.java</file>
             <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/ConnexionDB.java</file>
             <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/Metier/User.java</file>
             <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/DepenseDAO.java</file>
             <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/graphic/Comptable.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/Metier/PDF.java</file>
             <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/UserDAO.java</file>
         </group>
     </open-files>

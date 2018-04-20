@@ -75,9 +75,9 @@ public class UserDAO {
         String sql;
         ResultSet leResultat;
         User u = null;
-        System.out.println(user.getId());
+        //System.out.println(user.getId());
         sql = "SELECT * FROM Utilisateur WHERE idUtilisateur=" + user.getId() + "";
-        System.out.println(sql);
+        //System.out.println(sql);
         leResultat = transmission.executeQuery(sql);
         encore = leResultat.next();
         if (encore) {
@@ -139,5 +139,32 @@ public class UserDAO {
         
         
     }
+    
+    
+    public ArrayList<User> getUserByMonth(int mois) throws SQLException{
+        Statement transmission;
+        ResultSet result;
+        
+        transmission = laConnection.createStatement();
+        String SQL = "SELECT DISTINCT Utilisateur.idUtilisateur, mailUtilisateur, mdpUtilisateur, adresseUtilisateur, "
+                + "codePostalUtilisateur, villeUtilisateur, telUtilisateur, typeCompte, nomUtilisateur, prenomUtilisateur, "
+                + "idEntreprise FROM Utilisateur, NoteDeFrais WHERE Utilisateur.idUtilisateur = NoteDeFrais.idUtilisateur AND "
+                + "NoteDeFrais.dateSoumission LIKE '2018-0"+mois+"%'";
+        
+        result = transmission.executeQuery(SQL);
+
+        ArrayList<User> list = new ArrayList<User>();
+
+        while(result.next()){
+            list.add(new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), 
+                    result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), 
+                    result.getString("adresseUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"),
+                    result.getString("prenomUtilisateur"),
+                    result.getInt("idEntreprise")));
+        }
+        
+        return list;
+    }
+    
     
 }
