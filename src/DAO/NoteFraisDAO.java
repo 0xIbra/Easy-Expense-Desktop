@@ -42,24 +42,92 @@ public class NoteFraisDAO {
     
     
     
-    public ArrayList<NoteFrais> getNoteFraisByCommercial(User c) throws SQLException{
+    public ArrayList<NoteFrais> getNotesFraisByUserID(int UserID) throws SQLException{
         Statement transmission;
         ResultSet result;
         
         transmission = conn.createStatement();
-        String SQL = "SELECT codeFrais, libelle, dateFrais, dateSoumission, commentaireFrais FROM NoteDeFrais, Utilisateur "
-                + "WHERE NoteDeFrais.idUtilisateur = Utilisateur.idUtilisateur AND NoteDeFrais.idUtilisateur = "+c.getId();
+        
+        String SQL = "SELECT * FROM NoteDeFrais WHERE idUtilisateur = "+UserID;
         
         result = transmission.executeQuery(SQL);
+        ArrayList<NoteFrais> list = new ArrayList<NoteFrais>();
+        while(result.next()){
+            list.add(new NoteFrais(result.getInt("codeFrais"), result.getString("libelleNote"), result.getString("dateFrais"), result.getString("dateSoumission"), result.getString("villeFrais"), result.getString("commentaireFrais"), result.getString("etat")));
+        }
         
-        ArrayList<NoteFrais> tmpHolder = null;
+        return list;
+    }
+    
+    
+    public ArrayList<NoteFrais> getNoteFraisByUserAndMonth(User user, int mois) throws SQLException{
+        Statement transmission;
+        ResultSet result;
+        
+        transmission = conn.createStatement();
+        String SQL = "SELECT * FROM NoteDeFrais WHERE idUtilisateur = "+user.getId()+" AND dateSoumission LIKE '2018-0"+mois+"%'";
+        
+        result = transmission.executeQuery(SQL);
+        ArrayList<NoteFrais> notes = new ArrayList<NoteFrais>();
         
         while(result.next()){
-            
-            tmpHolder.add(new NoteFrais(result.getInt("codeFrais"), result.getString("libelle"), result.getString("dateFrais"), result.getString("dateSoumission"), 
-            result.getString("commentaireFrais")));
+            notes.add(new NoteFrais(result.getInt("codeFrais"), result.getString("libelleNote"), result.getString("dateFrais"),
+                                    result.getString("dateSoumission"), result.getString("villeFrais"), result.getString("commentaireFrais"),
+                                    result.getString("etat")));
         }
-        return tmpHolder;
+        
+        return notes;
+    }
+    
+    
+    
+    public boolean validateNoteFraisAndDepenses(int id) throws SQLException{
+        Statement transmission;
+        
+        transmission = conn.createStatement();
+        String SQL = "UPDATE Depense SET Depense.etatValidation = 'Validé' WHERE Depense.codeFrais = "+id;
+        int res = 0;
+        res = transmission.executeUpdate(SQL);
+        
+        if(res != 0){
+            transmission = conn.createStatement();
+            res = 0;
+            SQL = "UPDATE NoteDeFrais SET NoteDeFrais.etat = 'Validé' WHERE NoteDeFrais.codeFrais = "+id;
+            res = transmission.executeUpdate(SQL);
+            if(res != 0){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+    
+    
+    public boolean refuseNoteFraisAndDepenses(NoteFrais note) throws SQLException{
+        Statement transmission;
+        
+        transmission = conn.createStatement();
+        String SQL = "UPDATE NoteDeFrais SET etat = 'Refusé' WHERE codeFrais ="+note.getId();
+        
+        int res = 0;
+        
+        res = transmission.executeUpdate(SQL);
+        
+        if(res != 0){
+            transmission = conn.createStatement();
+            res = 0;
+            SQL = "UPDATE Depense SET etatValidation = 'Refusé' WHERE Depense.codeFrais = "+note.getId();
+            res = transmission.executeUpdate(SQL);
+            if(res != 0){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
     
 }

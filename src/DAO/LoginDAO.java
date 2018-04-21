@@ -33,7 +33,7 @@ public class LoginDAO {
         User tmpUser = null;
         
         while(result.next()){
-            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"));
+            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("adresseUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"), result.getInt("idEntreprise"));
             
         }
         
@@ -52,7 +52,7 @@ public class LoginDAO {
         User tmpUser = null;
         
          while(result.next()){
-            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"));
+            tmpUser = new User(result.getInt("idUtilisateur"), result.getString("mailUtilisateur"), result.getString("mdpUtilisateur"), result.getString("codePostalUtilisateur"), result.getString("villeUtilisateur"), result.getString("telUtilisateur"), result.getString("adresseUtilisateur"), result.getString("typeCompte"), result.getString("nomUtilisateur"), result.getString("prenomUtilisateur"), result.getInt("idEntreprise"));
             
         }
         

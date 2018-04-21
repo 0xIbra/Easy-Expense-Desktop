@@ -3,9 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Vince/Desktop/Projet/Easy-Expense-Desktop/src/IHM/Comptable.java</file>
             <file>file:/C:/Users/Vince/Desktop/Projet/Easy-Expense-Desktop/src/DAO/UserDAO.java</file>
             <file>file:/C:/Users/Vince/Desktop/Projet/Easy-Expense-Desktop/src/Metier/User.java</file>
+=======
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/LoginDAO.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/Metier/Depense.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/Metier/NoteFrais.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/graphic/DepenseActivity.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/NoteFraisDAO.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/ConnexionDB.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/Metier/User.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/DepenseDAO.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/graphic/Comptable.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/Metier/PDF.java</file>
+            <file>file:/C:/Users/ibrah/Documents/NetBeansProjects/Easy_Expense/Easy-Expense-Desktop/src/DAO/UserDAO.java</file>
+>>>>>>> ibragim
         </group>
     </open-files>
 </project-private>

@@ -16,24 +16,53 @@ public class NoteFrais {
     private String libelle;
     private String date;
     private String dateSoumission;
+    private String ville;
     private String commentaire;
+    private String etat;
     private ArrayList<Depense> depenses;
 
     
-    public NoteFrais(int id, String libelle, String date, String dateSoumission, String commentaire) {
+    public NoteFrais(int id, String libelle, String date, String dateSoumission, String ville, String commentaire, String etat) {
         this.id = id;
         this.libelle = libelle;
         this.date = date;
         this.dateSoumission = dateSoumission;
+        this.ville = ville;
         this.commentaire = commentaire;
+        this.etat = etat;
     }
     
-    public NoteFrais(String libelle, String date, String dateSoumission, String commentaire) {
+    public NoteFrais(String libelle, String date, String dateSoumission, String ville, String commentaire, String etat) {
         this.libelle = libelle;
         this.date = date;
         this.dateSoumission = dateSoumission;
+        this.ville = ville;
         this.commentaire = commentaire;
+        this.etat = etat;
     }
+    
+    
+    public String toString(){
+        return this.libelle + " - Etat : "+this.etat;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+    
+    
     
     
     public void addDepense(Depense d){
