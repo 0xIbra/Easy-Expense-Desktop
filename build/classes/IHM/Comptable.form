@@ -593,8 +593,12 @@
                       <EmptySpace pref="41" max="32767" attributes="0"/>
                       <Component id="modifierBTN" min="-2" max="-2" attributes="0"/>
 <<<<<<< HEAD:build/classes/IHM/Comptable.form
+<<<<<<< HEAD:build/classes/IHM/Comptable.form
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
 >>>>>>> ibragim:src/graphic/Comptable.form
+=======
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+>>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:build/classes/graphic/Comptable.form
 =======
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
 >>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:build/classes/graphic/Comptable.form

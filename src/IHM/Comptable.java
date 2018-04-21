@@ -58,9 +58,12 @@ public class Comptable extends javax.swing.JFrame {
     
     private DefaultListModel dm = new DefaultListModel();
 <<<<<<< HEAD:src/IHM/Comptable.java
+<<<<<<< HEAD:src/IHM/Comptable.java
     private DefaultListModel commercialDm = new DefaultListModel();
     private DefaultListModel noteFraisDm = new DefaultListModel();
 >>>>>>> ibragim:src/graphic/Comptable.java
+=======
+>>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
 =======
 >>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
 
@@ -1553,6 +1556,7 @@ public class Comptable extends javax.swing.JFrame {
             User currentUser = (User) listeCommerciaux.getSelectedItem();
 <<<<<<< HEAD:src/IHM/Comptable.java
 <<<<<<< HEAD:src/IHM/Comptable.java
+<<<<<<< HEAD:src/IHM/Comptable.java
             System.out.println(currentUser.getId());
 
             currentUser = userDAO.rechercherUser(currentUser);
@@ -1563,6 +1567,12 @@ public class Comptable extends javax.swing.JFrame {
             currentUser = userConn.rechercherUser(currentUser);
             //System.out.println(currentUser);
 >>>>>>> ibragim:src/graphic/Comptable.java
+=======
+            System.out.println(currentUser.getId());
+
+            currentUser = userConn.rechercherUser(currentUser);
+            System.out.println(currentUser);
+>>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
 =======
             System.out.println(currentUser.getId());
 
@@ -1615,6 +1625,7 @@ public class Comptable extends javax.swing.JFrame {
         
     }//GEN-LAST:event_moisActionPerformed
 
+<<<<<<< HEAD:src/IHM/Comptable.java
 <<<<<<< HEAD:src/IHM/Comptable.java
     private void printLABEL2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printLABEL2MousePressed
         printBTN2.setBackground(new Color(92,235,181));
@@ -1733,6 +1744,8 @@ public class Comptable extends javax.swing.JFrame {
 
 =======
 >>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
+=======
+>>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
     
     public void getSelectedUsersNotes() throws ClassNotFoundException{
         this.conn = new NoteFraisDAO();
@@ -1830,11 +1843,14 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel nomField1;
 <<<<<<< HEAD:src/IHM/Comptable.java
 <<<<<<< HEAD:src/IHM/Comptable.java
+<<<<<<< HEAD:src/IHM/Comptable.java
     private javax.swing.JLabel prenomField;
     private javax.swing.JLabel prenomField1;
     private javax.swing.JLabel processField1;
 =======
     private javax.swing.JList<Object> noteDeFraisContainer;
+=======
+>>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
 =======
 >>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
     private javax.swing.JList<Object> notesFraisContainer;
@@ -1844,9 +1860,12 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel printLabel;
     private javax.swing.JPanel refusBTN;
 <<<<<<< HEAD:src/IHM/Comptable.java
+<<<<<<< HEAD:src/IHM/Comptable.java
     private javax.swing.JPanel refuseBTN2;
     private javax.swing.JLabel refuseLABEL2;
 >>>>>>> ibragim:src/graphic/Comptable.java
+=======
+>>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
 =======
 >>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
     private javax.swing.JPanel sidepanel;
@@ -1857,10 +1876,13 @@ public class Comptable extends javax.swing.JFrame {
     private javax.swing.JLabel typeField1;
 <<<<<<< HEAD:src/IHM/Comptable.java
 <<<<<<< HEAD:src/IHM/Comptable.java
+<<<<<<< HEAD:src/IHM/Comptable.java
 =======
     private javax.swing.JPanel validateBTN2;
     private javax.swing.JLabel validateLABEL2;
 >>>>>>> ibragim:src/graphic/Comptable.java
+=======
+>>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
 =======
 >>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29:src/graphic/Comptable.java
     private javax.swing.JLabel villeField;

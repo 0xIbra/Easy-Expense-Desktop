@@ -132,6 +132,7 @@ public class UserDAO {
         User u = null;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println(user.getId());
         sql = "SELECT * FROM Utilisateur WHERE idUtilisateur=" + user.getId() + "";
         System.out.println(sql);
@@ -142,6 +143,9 @@ public class UserDAO {
 
 =======
         //System.out.println(user.getId());
+=======
+        System.out.println(user.getId());
+>>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29
 =======
         System.out.println(user.getId());
 >>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29
@@ -223,6 +227,7 @@ public class UserDAO {
     }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     public ArrayList<User> getUserByMonth(int mois) throws SQLException{
         Statement transmission;
@@ -251,6 +256,8 @@ public class UserDAO {
     
     
 >>>>>>> ibragim
+=======
+>>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29
 =======
 >>>>>>> parent of 8b7e5ee... MAJ 20/04/18 12:29
 }
