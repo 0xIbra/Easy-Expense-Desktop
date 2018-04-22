@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IHM;
+package graphic;
 
 import java.awt.Color;
 
@@ -74,6 +74,7 @@ public class addDepense extends javax.swing.JFrame {
 
         montantRemField.setBackground(new java.awt.Color(35, 38, 53));
         montantRemField.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
+        montantRemField.setForeground(new java.awt.Color(222, 222, 222));
         montantRemField.setBorder(null);
 
         jSeparator2.setBackground(new java.awt.Color(190, 190, 190));

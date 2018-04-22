@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IHM;
+package graphic;
 
 import Metier.Depense;
 import java.awt.Color;
@@ -65,9 +65,11 @@ public class addNote extends javax.swing.JFrame {
 
         jLabel2.setText("Date :");
         jLabel2.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(222, 222, 222));
 
         jLabel3.setText("Libelle :");
         jLabel3.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(222, 222, 222));
 
         jTextField1.setBackground(new java.awt.Color(35, 38, 53));
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package IHM;
+package graphic;
 
+import DAO.NoteFraisDAO;
 import Metier.User;
 import java.awt.Color;
 import static java.lang.String.valueOf;

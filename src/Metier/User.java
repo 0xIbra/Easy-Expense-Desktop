@@ -24,17 +24,12 @@ public class User {
     private int idEntreprise;
     
     
-<<<<<<< HEAD
-    public User(String email, String password, String codepostale, String ville, String tel,String adresse, String accType, String nom, String prenom){
-=======
     public User(String email, String password, String codepostale, String ville, String tel, String accType, String nom, String prenom, int idEnterprise){
->>>>>>> ibragim
         this.email = email;
         this.password = password;
         this.code_postal = codepostale;
         this.ville = ville;
         this.telephone = tel;
-        this.adresse = adresse;
         this.accountType = accType;
         this.LastName = nom;
         this.FirstName = prenom;
@@ -48,34 +43,13 @@ public class User {
         this.code_postal = codepostale;
         this.ville = ville;
         this.telephone = tel;
-<<<<<<< HEAD
-
-=======
         this.adresse = adresse;
->>>>>>> ibragim
         this.accountType = accType;
         this.LastName = nom;
         this.FirstName = prenom;
         this.idEntreprise = idEnterprise;
     }
 
-<<<<<<< HEAD
-    public User(String LastName, String FirstName) {
-        this.LastName = LastName;
-        this.FirstName = FirstName;
-    }
-
-    public User(String LastName) {
-        this.LastName = LastName;
-    }
-
-    public User(int id, String LastName, String FirstName) {
-        this.id = id;
-        this.LastName = LastName;
-        this.FirstName = FirstName;
-    }
-    
-=======
     public String getAdresse() {
         return adresse;
     }
@@ -83,7 +57,6 @@ public class User {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
->>>>>>> ibragim
     
     
     
@@ -173,21 +146,6 @@ public class User {
 
     public void setFirstName(String FirstName) {
         this.FirstName = FirstName;
-<<<<<<< HEAD
-    }
-
-    @Override
-    public String toString() {
-        return  LastName + " " + FirstName;
-    }
-    
-    public String toString2() {
-        return "User{" + "id=" + id + ", email=" + email + ", password=" + password + ", code_postal=" + code_postal + ", ville=" + ville + ", telephone=" + telephone + ", adresse=" + adresse + ", accountType=" + accountType + ", LastName=" + LastName + ", FirstName=" + FirstName + '}';
-    }
-    
-     
-=======
     }    
     
->>>>>>> ibragim
 }

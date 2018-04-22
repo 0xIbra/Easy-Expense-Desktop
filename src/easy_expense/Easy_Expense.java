@@ -5,22 +5,19 @@
  */
 package easy_expense;
 
-import IHM.LoginActivity;
-import DAO.UserDAO;
-import java.sql.SQLException;
+import graphic.LoginActivity;
+
 
 /**
  *
  * @author ibrah
  */
 public class Easy_Expense {
-    UserDAO userDAO = new UserDAO();
+
     /**
      * @param args the command line arguments
      */
-    
-    
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         LoginActivity f = new LoginActivity();
         f.setVisible(true);
         f.setSize(870, 530);

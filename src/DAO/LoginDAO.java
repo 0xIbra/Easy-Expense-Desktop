@@ -7,6 +7,7 @@ package DAO;
 
 import Metier.User;
 import com.mysql.jdbc.Connection;
+import graphic.Commercial;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
