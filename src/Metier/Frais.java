@@ -62,8 +62,8 @@ public class Frais extends Depense {
     
 
     @Override
-    public String getTypeDepense() {
-        return "Frais";
+    public int getTypeDepense() {
+        return super.getTYPE_FRAIS();
     }
     
     

@@ -16,6 +16,17 @@ public abstract class Depense {
     private String etat;
     private String dateValidation;
     private float montantDepense;
+    
+    public static final int TYPE_FRAIS = 1;
+    public static final int TYPE_TRAJET = 2;
+
+    public int getTYPE_FRAIS() {
+        return TYPE_FRAIS;
+    }
+
+    public int getTYPE_TRAJET() {
+        return TYPE_TRAJET;
+    }
 
     public Depense(int id, String datePaiement, float montantRem, String dateValidation, float montantDepense, String etat) {
         this.id = id;
@@ -42,9 +53,7 @@ public abstract class Depense {
         this.montantDepense = montantDepense;
     }
 
-    
-    
-    public abstract String getTypeDepense();
+    public abstract int getTypeDepense();
     
     public int getId() {
         return id;

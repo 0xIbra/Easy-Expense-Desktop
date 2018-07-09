@@ -1339,6 +1339,19 @@ public class Comptable extends javax.swing.JFrame {
 
     private void printLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_printLabelMouseReleased
         printBTN.setBackground(new Color(35,38,53));
+        
+        User selectedUser = (User) currentCommercialBox.getSelectedItem();
+        NoteFrais notefrais = (NoteFrais) notesFraisContainer.getSelectedValue();
+        if (selectedUser != null && notefrais != null){
+            try {
+                PDF pdffile = new PDF();
+                pdffile.generatePDF(selectedUser, notefrais);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_printLabelMouseReleased
 
     private void currentCommercialBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentCommercialBoxActionPerformed
@@ -1539,8 +1552,14 @@ public class Comptable extends javax.swing.JFrame {
         NoteFrais note = (NoteFrais) noteDeFraisContainer.getSelectedValue();
         
         if(note != null && user != null){
-            PDF pdf = new PDF();
-            pdf.generatePDF(user, note);
+            try {
+                PDF pdf = new PDF();
+                pdf.generatePDF(user, note);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Comptable.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         

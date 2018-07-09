@@ -103,8 +103,8 @@ public class Trajet extends Depense{
     }
 
     @Override
-    public String getTypeDepense() {
-        return "Trajet";
+    public int getTypeDepense() {
+        return super.getTYPE_TRAJET();
     }
     
     

@@ -91,7 +91,7 @@ public class DepenseActivity extends javax.swing.JFrame {
     public void initTypeDepense(){
         Depense test = (Depense) selectedDepense.getSelectedItem();
         switch(test.getTypeDepense()){
-            case "Frais":
+            case Depense.TYPE_FRAIS:
                 hideTrajetFields();
                 dateField.setText(((Frais) test).getDateFrais());
                 montantField.setText(String.valueOf(((Frais) test).getMontantDepense()));
@@ -99,7 +99,7 @@ public class DepenseActivity extends javax.swing.JFrame {
                 libelleField.setText(((Frais) test).getLibelleFrais());
                 commentaireField.setText(((Frais) test).getDetailsFrais());
                 break;
-            case "Trajet":
+            case Depense.TYPE_TRAJET:
                 showTrajetFields();
                 dateField.setText(((Trajet) test).getDatePaiement());
                 montantField.setText(String.valueOf(((Trajet) test).getMontantDepense()));

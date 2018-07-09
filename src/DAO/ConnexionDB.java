@@ -10,8 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
- * @author ibrah
+ * @author ibragim.abubakarov
  */
 public class ConnexionDB {
     private static final String url = "jdbc:mysql://e91099-mysql.services.easyname.eu/u143944db1";
